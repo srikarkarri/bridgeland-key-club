@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Officers | Bridgeland Key Club</title>
+  <link rel="icon" href="assets/bridgeland-keyclub-logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,30..100&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared/styles.css" />
+  <style>
+    /* Style toggle */
+    .style-btn {
+      padding:8px 16px; border-radius:999px; border:1.5px solid var(--navy-900);
+      background:transparent; color:var(--navy-900);
+      font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+      cursor:pointer; transition:background .15s, color .15s;
+    }
+    .style-btn.active { background:var(--navy-900); color:white; }
+
+    /* Polaroid cards */
+    .pol-wrap { transition:transform .4s cubic-bezier(.2,.7,.2,1); }
+    .pol-wrap:hover { transform:rotate(0deg) translateY(-12px) !important; }
+
+    /* Clean cards */
+    .clean-card {
+      background:white; border-radius:18px; overflow:hidden;
+      border:1.5px solid var(--navy-900);
+      box-shadow:4px 4px 0 var(--navy-900);
+      transition:transform .2s, box-shadow .2s;
+    }
+    .clean-card:hover { transform:translate(-4px,-4px); box-shadow:8px 8px 0 var(--navy-900); }
+
+    /* Yearbook flip card */
+    .flip-card  { perspective:1000px; height:360px; }
+    .flip-inner {
+      width:100%; height:100%; position:relative;
+      transform-style:preserve-3d;
+      transition:transform .6s cubic-bezier(.2,.7,.2,1);
+    }
+    .flip-card:hover .flip-inner { transform:rotateY(180deg); }
+    .flip-front, .flip-back {
+      position:absolute; inset:0; backface-visibility:hidden;
+      border-radius:4px; overflow:hidden;
+    }
+    .flip-back { transform:rotateY(180deg); background:var(--butter); color:var(--navy-900); padding:20px; display:flex; flex-direction:column; justify-content:center; gap:8px; }
+
+    /* Grid */
+    #officer-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:36px; }
+    @media(max-width:900px)  { #officer-grid { grid-template-columns:repeat(3,1fr); gap:24px; } }
+    @media(max-width:640px)  { #officer-grid { grid-template-columns:repeat(2,1fr); gap:16px; } .adv-grid { grid-template-columns:1fr !important; gap:32px !important; } }
+  </style>
+</head>
+<body class="grain">
+
+  <div id="mascot" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-100px,-100px);">
+    <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="16" stroke="#e87722" stroke-width="6"/>
+      <circle cx="24" cy="24" r="7"  fill="#e87722"/>
+      <rect x="36" y="26" width="22" height="8" rx="4" fill="#e87722"/>
+      <rect x="48" y="34" width="8"  height="8" rx="3" fill="#e87722"/>
+      <rect x="38" y="34" width="8"  height="6" rx="3" fill="#e87722"/>
+    </svg>
+  </div>
+
+  <nav class="topnav" style="position:relative;">
+    <div class="topnav-inner">
+      <a href="home.html" class="topnav-brand">
+        <img src="assets/bridgeland-keyclub-logo.jpg" alt="Bridgeland Key Club logo" />
+        <span>Bridgeland Key Club</span>
+      </a>
+      <div class="topnav-links" id="nav-links">
+        <a href="home.html"      class="topnav-link">Home</a>
+        <a href="about.html"     class="topnav-link">About</a>
+        <a href="officers.html"  class="topnav-link active">Officers</a>
+        <a href="district.html"  class="topnav-link">District</a>
+        <a href="events.html"    class="topnav-link">Events</a>
+        <a href="hours.html"     class="topnav-link">Hours</a>
+        <a href="gallery.html"   class="topnav-link">Gallery</a>
+        <a href="news.html"      class="topnav-link">News</a>
+        <a href="slides.html"    class="topnav-link">Slides</a>
+        <a href="contact.html"   class="topnav-link">Contact &amp; FAQ</a>
+      </div>
+      <button class="menu-btn" id="menu-btn" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+    </div>
+  </nav>
+
+  <!-- ── Page header ── -->
+  <section style="padding:80px 0 48px;background:var(--cream);">
+    <div class="wrap">
+      <div class="eyebrow" data-reveal>2025–26 board &amp; chairs</div>
+      <h1 data-reveal style="font-family:var(--display);font-size:clamp(44px,5.5vw,84px);line-height:1;letter-spacing:-0.02em;margin:16px 0 0;color:var(--navy-900);">The people who actually run this thing.</h1>
+      <p data-reveal class="body-lg" style="margin:20px 0 0;max-width:680px;transition-delay:.1s;">Officer elections are held every April. Each role is real responsibility: running events, managing the budget, keeping the records.</p>
+    </div>
+  </section>
+
+  <!-- ── Style toggle ── -->
+  <div class="wrap" style="margin-bottom:8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+    <span class="eyebrow" style="margin-right:4px;">Card style</span>
+    <button class="style-btn active" id="btn-polaroid"  onclick="setStyle('polaroid')">Polaroid</button>
+    <button class="style-btn"        id="btn-clean"     onclick="setStyle('clean')">Clean</button>
+    <button class="style-btn"        id="btn-yearbook"  onclick="setStyle('yearbook')">Yearbook</button>
+  </div>
+
+  <!-- ── Officer grid ── -->
+  <section style="padding:48px 0 120px;background:var(--cream);">
+    <div class="wrap">
+      <div id="officer-grid"></div>
+    </div>
+  </section>
+
+  <!-- ── Webmaster + advisors ── -->
+  <section style="padding:80px 0;background:var(--navy-900);color:var(--cream);">
+    <div class="wrap adv-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;">
+      <div data-reveal>
+        <div class="eyebrow" style="color:var(--butter);">Site team</div>
+        <h2 style="font-family:var(--display);font-size:48px;line-height:1;margin:12px 0 16px;color:var(--cream);">This site was built by a member.</h2>
+        <p class="body-lg" style="color:rgba(243,244,247,.85);margin:0;">Per Key Club International standards, club websites must be developed and maintained by a Key Club member. That member is <span style="color:var(--butter);font-family:var(--hand);font-size:28px;">Srikar Karri</span>, Webmaster, Class of '29.</p>
+        <p style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--butter);margin-top:16px;">srikar.karri@gmail.com</p>
+      </div>
+      <div data-reveal style="transition-delay:.12s;">
+        <div class="eyebrow" style="color:var(--butter);">Faculty advisors</div>
+        <h3 style="font-family:var(--display);font-size:36px;line-height:1;margin:12px 0 16px;color:var(--cream);">Behind the scenes.</h3>
+        <ul style="list-style:none;padding:0;margin:0;color:rgba(243,244,247,.85);font-size:16px;line-height:1.8;">
+          <li>Ms. Placeholder · Faculty advisor · BHS English</li>
+          <li>Mr. Placeholder · Co-advisor · BHS Social Studies</li>
+          <li>Mr. Andre Reyes · Kiwanis liaison · Cypress Kiwanis</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <h4>Bridgeland Key Club</h4>
+          <p style="margin:0;font-size:14px;line-height:1.55;opacity:.85;">
+            Bridgeland High School · Division 3W · Region 12<br/>
+            Chartered 2017 · Texas-Oklahoma District<br/>
+            Bridgeland HS · The Commons<br/>
+            10707 Mason Rd, Cypress, TX 77433
+          </p>
+          <div class="footer-logos">
+            <img src="assets/bridgeland-keyclub-logo.jpg"    alt="Bridgeland Key Club" />
+            <img src="assets/keyclub-international-seal.jpg" alt="Key Club International" />
+            <img src="assets/kiwanis-logo.webp"              alt="Kiwanis" />
+            <img src="assets/txok-keyclub-logo.webp"         alt="TX-OK District" />
+          </div>
+        </div>
+        <div>
+          <h4>The Club</h4>
+          <ul>
+            <li><a href="about.html">About Key Club</a></li>
+            <li><a href="officers.html">Officers</a></li>
+            <li><a href="district.html">District &amp; Division</a></li>
+            <li><a href="events.html">Events Calendar</a></li>
+            <li><a href="hours.html">Hours Tracker</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>The Family</h4>
+          <ul>
+            <li><a href="https://keyclub.org"   target="_blank" rel="noopener">Key Club International ↗</a></li>
+            <li><a href="https://tokeyclub.com" target="_blank" rel="noopener">TX-OK District ↗</a></li>
+            <li><a href="https://kiwanis.org"   target="_blank" rel="noopener">Kiwanis International ↗</a></li>
+            <li><a href="gallery.html">Photo Gallery</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Stay in touch</h4>
+          <ul>
+            <li><a href="mailto:bridgelandkeyclub@gmail.com">bridgelandkeyclub@gmail.com</a></li>
+            <li><a href="https://instagram.com/bridgelandkc" target="_blank" rel="noopener">@bridgelandkc ↗</a></li>
+            <li>Remind: @2026bkc / @2027bkc / @2028bkc / @2029bkc → 81010</li>
+            <li><a href="contact.html">Contact &amp; FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="yr"></span> Bridgeland Key Club · Division 3W · Texas-Oklahoma District</span>
+        <span class="footer-credit">site built &amp; maintained by Srikar Karri 🔑</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared/data.js"></script>
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    var menuBtn  = document.getElementById('menu-btn');
+    var navLinks = document.getElementById('nav-links');
+    menuBtn.addEventListener('click', function() {
+      var open = document.body.classList.toggle('nav-open');
+      menuBtn.setAttribute('aria-expanded', open);
+    });
+
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('[data-reveal]').forEach(function(el) { revealObs.observe(el); });
+
+    var mascot = document.getElementById('mascot');
+    var mx = 0, my = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
+    (function tick() {
+      cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+      var angle = Math.atan2(my - cy, mx - cx) * 180 / Math.PI;
+      mascot.style.transform = 'translate(' + (cx - 16) + 'px,' + (cy - 16) + 'px) rotate(' + angle + 'deg)';
+      requestAnimationFrame(tick);
+    })();
+
+    var TILTS      = [-2, 1.5, -1, 2, -1.5, 2, -2, 1];
+    var TAPE_COLS  = ['washi-mint','washi-peach','washi-red',''];
+    var currentStyle = 'polaroid';
+
+    function displayName(o) { return o.name === 'Placeholder' ? o.role + ': TBA' : o.name; }
+    function thumbText(o, i) { return o.name === 'Placeholder' ? 'officer #' + (i+1) : o.name.split(' ')[0]; }
+
+    function photoEl(o, aspect) {
+      if (o.photo) {
+        return '<img src="' + o.photo + '" alt="' + o.name + '" style="width:100%;aspect-ratio:' + aspect + ';object-fit:cover;object-position:top;display:block;" />';
+      }
+      return '<div style="width:100%;aspect-ratio:' + aspect + ';display:grid;place-items:center;font-family:var(--hand);font-size:18px;color:rgba(255,255,255,.6);text-align:center;">' + thumbText(o, 0) + '</div>';
+    }
+
+    function makePolaroid(o, i) {
+      var tilt = TILTS[i % TILTS.length] || 0;
+      var tape = TAPE_COLS[i % 4];
+      var div = document.createElement('div');
+      div.setAttribute('data-reveal','');
+      div.style.transitionDelay = (i * 50) + 'ms';
+      div.innerHTML =
+        '<div class="pol-wrap" style="transform:rotate(' + tilt + 'deg);">' +
+          '<div class="polaroid" style="width:100%;">' +
+            (tape ? '<span class="tape ' + tape + '" style="top:-10px;left:30%;transform:rotate(-4deg);"></span>' : '') +
+            '<div class="pic" style="width:100%;overflow:hidden;">' + photoEl(o, '4/5') + '</div>' +
+            '<div style="font-family:var(--hand);font-size:22px;color:var(--navy-900);line-height:1.05;margin-top:6px;">' + o.name + '</div>' +
+            '<div style="font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--red-600);margin-top:6px;">' + o.role + ' · \'' + String(o.year).slice(2) + '</div>' +
+            '<div style="font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--navy-700);margin-top:4px;opacity:.75;word-break:break-all;">' + o.email + '</div>' +
+          '</div>' +
+        '</div>';
+      return div;
+    }
+
+    function makeClean(o, i) {
+      var div = document.createElement('div');
+      div.setAttribute('data-reveal','');
+      div.style.transitionDelay = (i * 50) + 'ms';
+      div.innerHTML =
+        '<div class="clean-card">' +
+          '<div style="overflow:hidden;">' + photoEl(o, '1/1') + '</div>' +
+          '<div style="padding:18px;">' +
+            '<div style="font-family:var(--display);font-size:18px;line-height:1.15;color:var(--navy-900);">' + o.name + '</div>' +
+            '<div style="font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--red-600);margin-top:6px;">' + o.role + '</div>' +
+            '<div style="font-size:12px;color:var(--navy-700);margin-top:2px;">Class of ' + o.year + '</div>' +
+            '<a href="mailto:' + o.email + '" style="font-size:11px;color:var(--navy-700);margin-top:8px;display:block;word-break:break-all;">' + o.email + '</a>' +
+          '</div>' +
+        '</div>';
+      return div;
+    }
+
+    function makeYearbook(o, i) {
+      var yr2 = String(o.year).slice(2);
+      var div = document.createElement('div');
+      div.setAttribute('data-reveal','');
+      div.style.transitionDelay = (i * 50) + 'ms';
+      div.innerHTML =
+        '<div class="flip-card">' +
+          '<div class="flip-inner">' +
+            '<div class="flip-front" style="background:var(--navy-900);color:var(--cream);display:flex;flex-direction:column;">' +
+              '<div style="flex:1;overflow:hidden;">' +
+                (o.photo
+                  ? '<img src="' + o.photo + '" alt="' + o.name + '" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;" />'
+                  : '<div style="height:100%;background:rgba(255,255,255,.06);color:var(--butter);display:grid;place-items:center;font-family:var(--hand);font-size:18px;">' + thumbText(o,i) + '</div>'
+                ) +
+              '</div>' +
+              '<div style="padding:14px;border-top:2px solid var(--butter);">' +
+                '<div style="font-family:var(--display);font-size:20px;line-height:1;color:var(--cream);">' + o.name + '</div>' +
+                '<div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--butter);margin-top:6px;">' + o.role + ' · \'' + yr2 + '</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="flip-back">' +
+              '<div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;">Email</div>' +
+              '<div style="word-break:break-all;font-size:13px;">' + o.email + '</div>' +
+              '<div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-top:16px;">Graduates</div>' +
+              '<div style="font-family:var(--display);font-size:36px;line-height:1;">' + o.year + '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      return div;
+    }
+
+    function renderCards(style) {
+      var grid = document.getElementById('officer-grid');
+      grid.innerHTML = '';
+      grid.style.gap = style === 'polaroid' ? '36px' : '24px';
+      var officers = (window.BKC && window.BKC.officers) ? window.BKC.officers : [];
+      officers.forEach(function(o, i) {
+        var card = style === 'clean'    ? makeClean(o, i)
+                 : style === 'yearbook' ? makeYearbook(o, i)
+                 :                        makePolaroid(o, i);
+        grid.appendChild(card);
+        revealObs.observe(card);
+      });
+    }
+
+    function setStyle(s) {
+      currentStyle = s;
+      ['polaroid','clean','yearbook'].forEach(function(id) {
+        document.getElementById('btn-' + id).classList.toggle('active', id === s);
+      });
+      renderCards(s);
+    }
+
+    // Initial render
+    renderCards('polaroid');
+  </script>
+</body>
+</html>

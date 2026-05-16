@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About | Bridgeland Key Club</title>
+  <link rel="icon" href="assets/bridgeland-keyclub-logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,30..100&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared/styles.css" />
+  <style>
+    .value-pill {
+      text-align:center; padding:16px 8px;
+      border:1.5px solid var(--navy-900); border-radius:16px;
+      font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--navy-900);
+    }
+    .obj-row {
+      display:grid; grid-template-columns:60px 1fr; gap:24px;
+      padding:20px 0; border-top:1px solid rgba(14,42,78,.18);
+    }
+    .obj-num { font-family:var(--display); font-size:48px; line-height:1; color:var(--red-600); }
+    @media(max-width:900px) {
+      .dark-3col { grid-template-columns:1fr 1fr !important; gap:36px !important; }
+    }
+    @media(max-width:720px) {
+      .mission-grid  { grid-template-columns:1fr !important; gap:40px !important; }
+      .kci-grid      { grid-template-columns:1fr !important; }
+      .values-grid   { grid-template-columns:repeat(2,1fr) !important; }
+      .three-col     { grid-template-columns:1fr !important; }
+      .dark-3col     { grid-template-columns:1fr !important; }
+      .ideals-grid   { grid-template-columns:1fr !important; }
+    }
+    @media(max-width:480px) {
+      .values-grid   { grid-template-columns:repeat(2,1fr) !important; }
+      .ideals-grid   { grid-template-columns:1fr !important; }
+    }
+  </style>
+</head>
+<body class="grain">
+
+  <div id="mascot" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-100px,-100px);">
+    <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="16" stroke="#e87722" stroke-width="6"/>
+      <circle cx="24" cy="24" r="7"  fill="#e87722"/>
+      <rect x="36" y="26" width="22" height="8" rx="4" fill="#e87722"/>
+      <rect x="48" y="34" width="8"  height="8" rx="3" fill="#e87722"/>
+      <rect x="38" y="34" width="8"  height="6" rx="3" fill="#e87722"/>
+    </svg>
+  </div>
+
+  <nav class="topnav" style="position:relative;">
+    <div class="topnav-inner">
+      <a href="home.html" class="topnav-brand">
+        <img src="assets/bridgeland-keyclub-logo.jpg" alt="Bridgeland Key Club logo" />
+        <span>Bridgeland Key Club</span>
+      </a>
+      <div class="topnav-links" id="nav-links">
+        <a href="home.html"      class="topnav-link">Home</a>
+        <a href="about.html"     class="topnav-link active">About</a>
+        <a href="officers.html"  class="topnav-link">Officers</a>
+        <a href="district.html"  class="topnav-link">District</a>
+        <a href="events.html"    class="topnav-link">Events</a>
+        <a href="hours.html"     class="topnav-link">Hours</a>
+        <a href="gallery.html"   class="topnav-link">Gallery</a>
+        <a href="news.html"      class="topnav-link">News</a>
+        <a href="slides.html"    class="topnav-link">Slides</a>
+        <a href="contact.html"   class="topnav-link">Contact &amp; FAQ</a>
+      </div>
+      <button class="menu-btn" id="menu-btn" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+    </div>
+  </nav>
+
+  <!-- ── Page header ── -->
+  <section style="padding:80px 0 60px;background:var(--cream);">
+    <div class="wrap">
+      <div class="eyebrow" data-reveal>What we are · what we do</div>
+      <h1 data-reveal style="font-family:var(--display);font-size:clamp(44px,5.5vw,84px);line-height:1;letter-spacing:-0.02em;margin:16px 0 0;color:var(--navy-900);">A student-led service organization, since 2017.</h1>
+      <p data-reveal class="body-lg" style="margin:20px 0 0;max-width:700px;transition-delay:.1s;">Bridgeland Key Club is the BHS chapter of Key Club International, the largest high-school service organization in the world. We're chartered through the Cypress Kiwanis Club and represent Division 3W of the Texas-Oklahoma District.</p>
+    </div>
+  </section>
+
+  <!-- ── Mission ── -->
+  <section style="padding:80px 0;">
+    <div class="wrap mission-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;">
+      <div data-reveal>
+        <div class="eyebrow">Our mission</div>
+        <h2 style="font-family:var(--display);font-size:clamp(32px,4vw,48px);line-height:1.1;letter-spacing:-0.01em;margin:12px 0 0;color:var(--navy-900);">Empower student members to lead by serving.</h2>
+      </div>
+      <div data-reveal style="transition-delay:.12s;">
+        <p class="body-lg">We partner with local nonprofits, elementary schools, and community leaders to make a real difference in Cypress. Members run the projects: choosing where we show up, leading the day-of logistics, and signing the recap reports themselves. The leadership skill comes from the leadership work.</p>
+        <div class="values-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:32px;">
+          <div class="value-pill" style="background:var(--butter);transform:rotate(-2deg);">Service</div>
+          <div class="value-pill" style="background:var(--mint);transform:rotate(1deg);">Leadership</div>
+          <div class="value-pill" style="background:var(--peach);transform:rotate(-1deg);">Inclusivity</div>
+          <div class="value-pill" style="background:var(--sky);transform:rotate(1.5deg);">Integrity</div>
+          <div class="value-pill" style="background:#f5d6e0;transform:rotate(-1.5deg);">Teamwork</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What is Key Club? ── -->
+  <section style="padding:80px 0;background:var(--cream-2);">
+    <div class="wrap">
+      <div data-reveal>
+        <div class="eyebrow">What is Key Club, really?</div>
+        <h2 style="font-family:var(--display);font-size:clamp(32px,4vw,52px);line-height:1.05;letter-spacing:-0.01em;margin:12px 0 0;color:var(--navy-900);">The 30-second version.</h2>
+      </div>
+      <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px;">
+        <div data-reveal style="transition-delay:0ms;">
+          <div class="card" style="height:100%;">
+            <div class="eyebrow" style="color:var(--red-600);">International</div>
+            <h3 style="font-family:var(--display);font-size:22px;line-height:1.2;margin:12px 0;">Key Club International</h3>
+            <p class="body" style="margin:0;">Founded in 1925. Today: 240,000+ members across 5,000+ clubs in 38 countries. The largest student-led service organization on the planet.</p>
+          </div>
+        </div>
+        <div data-reveal style="transition-delay:100ms;">
+          <div class="card" style="height:100%;">
+            <div class="eyebrow" style="color:var(--red-600);">District</div>
+            <h3 style="font-family:var(--display);font-size:22px;line-height:1.2;margin:12px 0;">Texas-Oklahoma District</h3>
+            <p class="body" style="margin:0;">Our district covers all of Texas and Oklahoma, with 240+ clubs and 14,000+ members. We elect district officers each year at convention in Dallas.</p>
+          </div>
+        </div>
+        <div data-reveal style="transition-delay:200ms;">
+          <div class="card" style="height:100%;">
+            <div class="eyebrow" style="color:var(--red-600);">Local</div>
+            <h3 style="font-family:var(--display);font-size:22px;line-height:1.2;margin:12px 0;">Cypress Kiwanis sponsorship</h3>
+            <p class="body" style="margin:0;">Every Key Club is sponsored by a local Kiwanis Club. Ours is Cypress Kiwanis. They fund our charter and give us advisors who've been in service for decades.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Objects of Key Club ── -->
+  <section style="padding:120px 0;">
+    <div class="wrap" style="max-width:880px;">
+      <div data-reveal class="eyebrow" style="text-align:center;">The Objects of Key Club International</div>
+      <ol style="list-style:none;padding:0;margin:40px 0 0;">
+        <li data-reveal class="obj-row" style="transition-delay:0ms;">
+          <div class="obj-num">1</div>
+          <div class="body-lg" style="padding-top:8px;">To develop initiative and leadership.</div>
+        </li>
+        <li data-reveal class="obj-row" style="transition-delay:60ms;">
+          <div class="obj-num">2</div>
+          <div class="body-lg" style="padding-top:8px;">To provide experience in living and working together.</div>
+        </li>
+        <li data-reveal class="obj-row" style="transition-delay:120ms;">
+          <div class="obj-num">3</div>
+          <div class="body-lg" style="padding-top:8px;">To serve the school and community.</div>
+        </li>
+        <li data-reveal class="obj-row" style="transition-delay:180ms;">
+          <div class="obj-num">4</div>
+          <div class="body-lg" style="padding-top:8px;">To cooperate with the school principal.</div>
+        </li>
+        <li data-reveal class="obj-row" style="transition-delay:240ms;">
+          <div class="obj-num">5</div>
+          <div class="body-lg" style="padding-top:8px;">To prepare for useful citizenship.</div>
+        </li>
+        <li data-reveal class="obj-row" style="transition-delay:300ms;align-items:flex-start;">
+          <div class="obj-num">6</div>
+          <div style="padding-top:8px;flex:1;">
+            <div class="body-lg" style="margin-bottom:20px;">To accept and promote the following ideals:</div>
+            <div class="ideals-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div style="background:var(--butter);border:1.5px solid var(--navy-900);border-radius:12px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;">
+                <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--navy-900);flex-shrink:0;margin-top:2px;">I</span>
+                <span style="font-size:14px;line-height:1.55;color:var(--navy-900);">Give primacy to the human and spiritual rather than to the material values of life.</span>
+              </div>
+              <div style="background:var(--mint);border:1.5px solid var(--navy-900);border-radius:12px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;">
+                <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--navy-900);flex-shrink:0;margin-top:2px;">II</span>
+                <span style="font-size:14px;line-height:1.55;color:var(--navy-900);">Encourage the daily living of the Golden Rule in all human relationships.</span>
+              </div>
+              <div style="background:var(--peach);border:1.5px solid var(--navy-900);border-radius:12px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;">
+                <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--navy-900);flex-shrink:0;margin-top:2px;">III</span>
+                <span style="font-size:14px;line-height:1.55;color:var(--navy-900);">Promote higher standards in scholarship, sportsmanship, and social contacts.</span>
+              </div>
+              <div style="background:var(--sky);border:1.5px solid var(--navy-900);border-radius:12px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;">
+                <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--navy-900);flex-shrink:0;margin-top:2px;">IV</span>
+                <span style="font-size:14px;line-height:1.55;color:var(--navy-900);">Develop, by precept and example, a more intelligent, aggressive, and serviceable citizenship.</span>
+              </div>
+              <div style="background:var(--cream-2);border:1.5px solid var(--navy-900);border-radius:12px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;">
+                <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--navy-900);flex-shrink:0;margin-top:2px;">V</span>
+                <span style="font-size:14px;line-height:1.55;color:var(--navy-900);">Provide a practical means to form enduring friendships, render altruistic service, and build better communities.</span>
+              </div>
+              <div style="background:var(--navy-900);border:1.5px solid var(--navy-900);border-radius:12px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;">
+                <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--butter);flex-shrink:0;margin-top:2px;">VI</span>
+                <span style="font-size:14px;line-height:1.55;color:var(--cream);">Cooperate in creating and maintaining the sound public opinion and high idealism which make possible righteousness, justice, patriotism, and good will.</span>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── KCI + Kiwanis + District dark section ── -->
+  <section style="padding:80px 0;background:var(--navy-900);color:var(--cream);">
+    <div class="wrap dark-3col" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;">
+      <div data-reveal>
+        <img src="assets/keyclub-international-seal.jpg" alt="Key Club International" style="width:80px;margin-bottom:24px;border-radius:50%;" />
+        <div class="eyebrow" style="color:var(--butter);">Global parent organization</div>
+        <h3 style="font-family:var(--display);font-size:36px;line-height:1;margin:12px 0 16px;color:var(--cream);">Key Club International</h3>
+        <p class="body-lg" style="color:rgba(243,244,247,.85);margin:0 0 20px;">The largest high-school service organization in the world, with over 250,000 members across 40+ countries. Every club, every charter, every convention flows through KCI.</p>
+        <a href="https://keyclub.org" target="_blank" rel="noopener" class="btn butter">keyclub.org ↗</a>
+      </div>
+      <div data-reveal style="transition-delay:.08s;">
+        <img src="assets/kiwanis-logo.webp" alt="Kiwanis" style="width:80px;margin-bottom:24px;border-radius:8px;" />
+        <div class="eyebrow" style="color:var(--butter);">Sponsoring Kiwanis Club</div>
+        <h3 style="font-family:var(--display);font-size:36px;line-height:1;margin:12px 0 16px;color:var(--cream);">Cypress Kiwanis Club</h3>
+        <p class="body-lg" style="color:rgba(243,244,247,.85);margin:0 0 16px;">Our chartering Kiwanis Club. They write our charter, advise our board, and have been showing up to our pancake breakfasts for nine straight years.</p>
+        <p style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--butter);margin:0 0 20px;">President · Andre Reyes · cypresskiwanis@example.org</p>
+        <a href="https://kiwanis.org" target="_blank" rel="noopener" class="btn butter">kiwanis.org ↗</a>
+      </div>
+      <div data-reveal style="transition-delay:.16s;">
+        <img src="assets/txok-keyclub-logo.webp" alt="TX-OK Key Club" style="width:80px;margin-bottom:24px;border-radius:50%;" />
+        <div class="eyebrow" style="color:var(--butter);">Texas-Oklahoma District</div>
+        <h3 style="font-family:var(--display);font-size:36px;line-height:1;margin:12px 0 16px;color:var(--cream);">Division 3W · Region 12</h3>
+        <p class="body-lg" style="color:rgba(243,244,247,.85);margin:0 0 16px;">Our division includes Bridgeland, Cy-Fair, Cy-Ranch, Cy-Woods, Cypress Park, and Langham Creek. We meet up with them at Division Council Meetings each quarter.</p>
+        <a href="https://tokeyclub.com" target="_blank" rel="noopener" class="btn butter">tokeyclub.com ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Join CTA ── -->
+  <section style="padding:100px 0;background:var(--cream);">
+    <div class="wrap" style="text-align:center;max-width:640px;">
+      <div data-reveal class="eyebrow">Ready to join?</div>
+      <h2 data-reveal style="font-family:var(--display);font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-0.01em;margin:12px 0 16px;color:var(--navy-900);transition-delay:.06s;">Meetings start 2:30 PM, The Commons.</h2>
+      <p data-reveal class="body-lg" style="margin:0 0 32px;transition-delay:.1s;">1st and 3rd Wednesdays of every month. Show up once to see if it's for you. No commitment required for the first visit.</p>
+      <div data-reveal style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;transition-delay:.14s;">
+        <a href="https://docs.google.com/forms/d/1jY-JtybDWFTm4HO-oOFvker6qQ-0M0anZ0Idi35E0Sk/viewform" target="_blank" rel="noopener" class="btn red">Get the membership form →</a>
+        <a href="events.html"  class="btn ghost">See upcoming events</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <h4>Bridgeland Key Club</h4>
+          <p style="margin:0;font-size:14px;line-height:1.55;opacity:.85;">
+            Bridgeland High School · Division 3W · Region 12<br/>
+            Chartered 2017 · Texas-Oklahoma District<br/>
+            Bridgeland HS · The Commons<br/>
+            10707 Mason Rd, Cypress, TX 77433
+          </p>
+          <div class="footer-logos">
+            <img src="assets/bridgeland-keyclub-logo.jpg"    alt="Bridgeland Key Club" />
+            <img src="assets/keyclub-international-seal.jpg" alt="Key Club International" />
+            <img src="assets/kiwanis-logo.webp"              alt="Kiwanis" />
+            <img src="assets/txok-keyclub-logo.webp"         alt="TX-OK District" />
+          </div>
+        </div>
+        <div>
+          <h4>The Club</h4>
+          <ul>
+            <li><a href="about.html">About Key Club</a></li>
+            <li><a href="officers.html">Officers</a></li>
+            <li><a href="district.html">District &amp; Division</a></li>
+            <li><a href="events.html">Events Calendar</a></li>
+            <li><a href="hours.html">Hours Tracker</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>The Family</h4>
+          <ul>
+            <li><a href="https://keyclub.org"   target="_blank" rel="noopener">Key Club International ↗</a></li>
+            <li><a href="https://tokeyclub.com" target="_blank" rel="noopener">TX-OK District ↗</a></li>
+            <li><a href="https://kiwanis.org"   target="_blank" rel="noopener">Kiwanis International ↗</a></li>
+            <li><a href="gallery.html">Photo Gallery</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Stay in touch</h4>
+          <ul>
+            <li><a href="mailto:bridgelandkeyclub@gmail.com">bridgelandkeyclub@gmail.com</a></li>
+            <li><a href="https://instagram.com/bridgelandkc" target="_blank" rel="noopener">@bridgelandkc ↗</a></li>
+            <li>Remind: @2026bkc / @2027bkc / @2028bkc / @2029bkc → 81010</li>
+            <li><a href="contact.html">Contact &amp; FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="yr"></span> Bridgeland Key Club · Division 3W · Texas-Oklahoma District</span>
+        <span class="footer-credit">site built &amp; maintained by Srikar Karri 🔑</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared/data.js"></script>
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    var menuBtn  = document.getElementById('menu-btn');
+    var navLinks = document.getElementById('nav-links');
+    menuBtn.addEventListener('click', function() {
+      var open = document.body.classList.toggle('nav-open');
+      menuBtn.setAttribute('aria-expanded', open);
+    });
+
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('[data-reveal]').forEach(function(el) { revealObs.observe(el); });
+
+    var mascot = document.getElementById('mascot');
+    var mx = 0, my = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
+    (function tick() {
+      cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+      var angle = Math.atan2(my - cy, mx - cx) * 180 / Math.PI;
+      mascot.style.transform = 'translate(' + (cx - 16) + 'px,' + (cy - 16) + 'px) rotate(' + angle + 'deg)';
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>

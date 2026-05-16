@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bridgeland Key Club | District &amp; Division</title>
+  <link rel="icon" href="assets/bridgeland-keyclub-logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,30..100&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared/styles.css" />
+  <style>
+    .nav-open {
+      display: flex !important;
+      flex-direction: column;
+      position: absolute;
+      top: 68px; left: 0; right: 0;
+      background: var(--cream);
+      border-bottom: 1.5px solid var(--navy-900);
+      padding: 12px var(--gutter);
+      gap: 4px;
+      z-index: 49;
+    }
+    .officer-card {
+      background: white;
+      border: 1.5px solid var(--navy-900);
+      border-radius: 18px;
+      padding: 28px 24px;
+      box-shadow: 4px 4px 0 var(--navy-900);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .officer-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 4px 8px 0 var(--navy-900);
+    }
+    .officers-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .events-grid   { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+    .div-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+    @media (max-width:900px) {
+      .officers-grid { grid-template-columns:repeat(2,1fr); }
+      .events-grid   { grid-template-columns:1fr; }
+      .div-info-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width:600px) {
+      .officers-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body class="grain">
+
+  <div id="mascot" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-100px,-100px);">
+    <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="16" stroke="#e87722" stroke-width="6"/>
+      <circle cx="24" cy="24" r="7"  fill="#e87722"/>
+      <rect x="36" y="26" width="22" height="8" rx="4" fill="#e87722"/>
+      <rect x="48" y="34" width="8"  height="8" rx="3" fill="#e87722"/>
+      <rect x="38" y="34" width="8"  height="6" rx="3" fill="#e87722"/>
+    </svg>
+  </div>
+
+  <!-- ── nav ── -->
+  <nav class="topnav" style="position:relative;">
+    <div class="topnav-inner">
+      <a href="home.html" class="topnav-brand">
+        <img src="assets/bridgeland-keyclub-logo.jpg" alt="Bridgeland Key Club logo" />
+        <span>Bridgeland Key Club</span>
+      </a>
+      <div class="topnav-links" id="nav-links">
+        <a href="home.html"      class="topnav-link">Home</a>
+        <a href="about.html"     class="topnav-link">About</a>
+        <a href="officers.html"  class="topnav-link">Officers</a>
+        <a href="district.html"  class="topnav-link active">District</a>
+        <a href="events.html"    class="topnav-link">Events</a>
+        <a href="hours.html"     class="topnav-link">Hours</a>
+        <a href="gallery.html"   class="topnav-link">Gallery</a>
+        <a href="news.html"      class="topnav-link">News</a>
+        <a href="slides.html"    class="topnav-link">Slides</a>
+        <a href="contact.html"   class="topnav-link">Contact &amp; FAQ</a>
+      </div>
+      <button class="menu-btn" id="menu-btn" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+    </div>
+  </nav>
+
+  <!-- ── page hero ── -->
+  <section style="padding:72px 0 64px;background:var(--cream-2);position:relative;overflow:hidden;">
+    <div class="wrap">
+      <div data-reveal>
+        <div class="eyebrow">Where we fit in</div>
+        <h1 class="h-display" style="margin-top:16px;max-width:700px;">
+          Division 3W.<br/>
+          <span style="font-style:italic;color:#e87722;">Region 12.</span><br/>
+          Texas-Oklahoma.
+        </h1>
+        <p class="body-lg" style="margin-top:24px;max-width:560px;">
+          Every Bridgeland Key Club member is part of something much bigger: a division, a region, a district, and Key Club International. Here's who leads ours.
+        </p>
+        <div style="display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;">
+          <a href="https://www.tokeyclub.com" target="_blank" rel="noopener" class="btn red">TX-OK District site ↗</a>
+          <a href="https://www.keyclub.org"   target="_blank" rel="noopener" class="btn ghost">Key Club International ↗</a>
+        </div>
+      </div>
+    </div>
+    <div aria-hidden="true" style="position:absolute;right:-30px;top:40px;transform:rotate(8deg);opacity:.08;pointer-events:none;">
+      <img src="assets/txok-keyclub-logo.webp" alt="" style="width:220px;height:220px;border-radius:50%;" />
+    </div>
+  </section>
+
+  <!-- ── division 3W ── -->
+  <section style="padding:96px 0 80px;background:var(--cream);">
+    <div class="wrap">
+
+      <!-- about division -->
+      <div data-reveal class="card bordered tilt-r" style="background:var(--sky);margin-top:32px;">
+        <div class="div-info-grid">
+          <div>
+            <div class="eyebrow" style="opacity:.7;">About Division 3W</div>
+            <h3 class="h-card" style="margin-top:12px;font-size:26px;">Part of the Texas-Oklahoma District</h3>
+            <p class="body" style="margin-top:12px;">
+              Division 3W covers clubs in the Greater Houston area. As a division we hold regular divisional council meetings (DCM) and co-host service projects across member clubs.
+            </p>
+          </div>
+          <div>
+            <div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-700);margin-bottom:16px;">Division quick facts</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(14,42,78,.15);padding-bottom:8px;">
+                <span style="font-family:var(--mono);font-size:12px;opacity:.7;">Division</span>
+                <strong>3W</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(14,42,78,.15);padding-bottom:8px;">
+                <span style="font-family:var(--mono);font-size:12px;opacity:.7;">Region</span>
+                <strong>12</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(14,42,78,.15);padding-bottom:8px;">
+                <span style="font-family:var(--mono);font-size:12px;opacity:.7;">District</span>
+                <strong>Texas-Oklahoma</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;">
+                <span style="font-family:var(--mono);font-size:12px;opacity:.7;">Club chartered</span>
+                <strong>2017</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── district officers ── -->
+  <section style="padding:80px 0 96px;background:var(--cream-2);">
+    <div class="wrap">
+
+      <div data-reveal style="display:flex;align-items:center;gap:20px;margin-bottom:48px;flex-wrap:wrap;">
+        <div style="background:var(--navy-900);color:var(--butter);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:8px 16px;border-radius:999px;white-space:nowrap;">
+          Texas-Oklahoma District
+        </div>
+        <h2 class="h-section" style="margin:0;">District Leadership</h2>
+      </div>
+
+      <div class="officers-grid">
+
+        <div data-reveal class="officer-card" style="background:var(--peach);">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62d21cc4990aa2393ec984cb/cbb6dd93-5fb5-470b-8e66-c11e536fd2c4/kelly-modified.png" alt="Kelly Poland" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;" />
+            <span class="chip" style="font-size:10px;">District</span>
+          </div>
+          <div class="eyebrow" style="color:var(--navy-900);opacity:.7;margin-bottom:8px;">District Administrator</div>
+          <h3 style="font-family:var(--hand);font-size:28px;color:var(--navy-900);margin:0 0 8px;line-height:1.1;">Kelly Poland</h3>
+          <a href="mailto:kjpoland128@gmail.com" style="font-family:var(--mono);font-size:12px;color:var(--navy-800);text-decoration:none;">kjpoland128@gmail.com</a>
+        </div>
+
+        <div data-reveal class="officer-card" style="background:var(--butter);transition-delay:.08s;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62d21cc4990aa2393ec984cb/b9661b16-c154-43f1-9f7d-a8f05dbe127c/LTG-photoaidcom-cropped.png" alt="Amuktamalyada Panchanganmvenkata" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;" />
+            <span class="chip" style="font-size:10px;">Division 3W</span>
+          </div>
+          <div class="eyebrow" style="color:var(--navy-900);opacity:.7;margin-bottom:8px;">Lt. Governor</div>
+          <h3 style="font-family:var(--hand);font-size:28px;color:var(--navy-900);margin:0 0 8px;line-height:1.1;">Amuktamalyada<br/>Panchanganmvenkata</h3>
+          <a href="mailto:ltg3w@tokeyclub.com" style="font-family:var(--mono);font-size:12px;color:var(--navy-800);text-decoration:none;">ltg3w@tokeyclub.com</a>
+        </div>
+
+        <div data-reveal class="officer-card" style="transition-delay:.16s;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62d21cc4990aa2393ec984cb/2674346f-031a-495f-a769-291776f09622/hannah-modified.png" alt="Hannah Nguyen" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;" />
+            <span class="chip" style="font-size:10px;">District</span>
+          </div>
+          <div class="eyebrow" style="opacity:.7;margin-bottom:8px;">District Governor</div>
+          <h3 style="font-family:var(--hand);font-size:28px;color:var(--navy-900);margin:0 0 8px;line-height:1.1;">Hannah Nguyen</h3>
+          <a href="mailto:governor@tokeyclub.com" style="font-family:var(--mono);font-size:12px;color:var(--navy-700);text-decoration:none;">governor@tokeyclub.com</a>
+        </div>
+
+        <div data-reveal class="officer-card" style="transition-delay:.24s;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62d21cc4990aa2393ec984cb/23312b5c-d85d-4af4-a692-c5ecf65de276/nirunjun-modified+%281%29.png" alt="Nirunjun Kaur" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;" />
+            <span class="chip" style="font-size:10px;">District</span>
+          </div>
+          <div class="eyebrow" style="opacity:.7;margin-bottom:8px;">District Secretary</div>
+          <h3 style="font-family:var(--hand);font-size:28px;color:var(--navy-900);margin:0 0 8px;line-height:1.1;">Nirunjun Kaur</h3>
+          <a href="mailto:secretary@tokeyclub.com" style="font-family:var(--mono);font-size:12px;color:var(--navy-700);text-decoration:none;">secretary@tokeyclub.com</a>
+        </div>
+
+        <div data-reveal class="officer-card" style="transition-delay:.32s;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62d21cc4990aa2393ec984cb/523b50be-19bf-4cc4-a8d6-df24ed96413c/kate-modified+%281%29.png" alt="Kate Castro" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;" />
+            <span class="chip" style="font-size:10px;">District</span>
+          </div>
+          <div class="eyebrow" style="opacity:.7;margin-bottom:8px;">District Treasurer</div>
+          <h3 style="font-family:var(--hand);font-size:28px;color:var(--navy-900);margin:0 0 8px;line-height:1.1;">Kate Castro</h3>
+          <a href="mailto:treasurer@tokeyclub.com" style="font-family:var(--mono);font-size:12px;color:var(--navy-700);text-decoration:none;">treasurer@tokeyclub.com</a>
+        </div>
+
+        <div data-reveal class="officer-card" style="transition-delay:.4s;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62d21cc4990aa2393ec984cb/ddd02eee-038e-4a07-8e59-6ba9e804ed99/kunj-modified.png" alt="Kunj Senjaliya" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;" />
+            <span class="chip" style="font-size:10px;">District</span>
+          </div>
+          <div class="eyebrow" style="opacity:.7;margin-bottom:8px;">District Editor</div>
+          <h3 style="font-family:var(--hand);font-size:28px;color:var(--navy-900);margin:0 0 8px;line-height:1.1;">Kunj Senjaliya</h3>
+          <a href="mailto:editor@tokeyclub.com" style="font-family:var(--mono);font-size:12px;color:var(--navy-700);text-decoration:none;">editor@tokeyclub.com</a>
+        </div>
+
+        <div data-reveal class="officer-card" style="transition-delay:.48s;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62d21cc4990aa2393ec984cb/e4b25c89-67c8-4b5a-ac1d-aa7c5b6cdc0e/fatima-modified.png" alt="Fatima Rojo" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;" />
+            <span class="chip" style="font-size:10px;">District</span>
+          </div>
+          <div class="eyebrow" style="opacity:.7;margin-bottom:8px;">District Tech Pro</div>
+          <h3 style="font-family:var(--hand);font-size:28px;color:var(--navy-900);margin:0 0 8px;line-height:1.1;">Fatima Rojo</h3>
+          <a href="mailto:techpro@tokeyclub.com" style="font-family:var(--mono);font-size:12px;color:var(--navy-700);text-decoration:none;">techpro@tokeyclub.com</a>
+        </div>
+
+        <div data-reveal class="officer-card" style="transition-delay:.56s;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62d21cc4990aa2393ec984cb/e2d93122-6654-4d7f-be92-bd33120a0c7b/nancy-modified.png" alt="Nancy Nguyen" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;" />
+            <span class="chip" style="font-size:10px;">District</span>
+          </div>
+          <div class="eyebrow" style="opacity:.7;margin-bottom:8px;">District Convention Liaison</div>
+          <h3 style="font-family:var(--hand);font-size:28px;color:var(--navy-900);margin:0 0 8px;line-height:1.1;">Nancy Nguyen</h3>
+          <a href="mailto:cl@tokeyclub.com" style="font-family:var(--mono);font-size:12px;color:var(--navy-700);text-decoration:none;">cl@tokeyclub.com</a>
+        </div>
+
+        <div data-reveal class="officer-card" style="transition-delay:.64s;background:var(--sky);">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+            <img src="assets/txok-keyclub-logo.webp" alt="TX-OK District"
+                 style="width:64px;height:64px;border-radius:50%;border:2px solid var(--silver-200);flex-shrink:0;" />
+            <span class="chip" style="font-size:10px;">Region 12</span>
+          </div>
+          <div class="eyebrow" style="opacity:.7;margin-bottom:8px;">Region 12 Advisor</div>
+          <h3 style="font-family:var(--hand);font-size:28px;color:var(--navy-900);margin:0 0 8px;line-height:1.1;">Brittany Stiborik</h3>
+          <p class="body" style="margin:0 0 8px;font-size:14px;">Oversees clubs in Region 12, including Division 3W.</p>
+          <a href="mailto:region12@tokeyclub.com" style="font-family:var(--mono);font-size:11px;color:var(--navy-700);text-decoration:none;">region12@tokeyclub.com</a>
+        </div>
+
+      </div>
+
+      <div data-reveal style="margin-top:32px;text-align:center;">
+        <a href="https://tokeyclub.com/board-1" target="_blank" rel="noopener" class="btn ghost">
+          See full district board at tokeyclub.com ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LEDCON ── -->
+  <section style="padding:80px 0 96px;background:var(--navy-900);color:var(--cream);">
+    <div class="wrap">
+
+      <div data-reveal style="display:flex;align-items:center;gap:20px;margin-bottom:48px;flex-wrap:wrap;">
+        <div style="background:var(--butter);color:var(--navy-900);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:8px 16px;border-radius:999px;white-space:nowrap;">
+          Annual · Winter
+        </div>
+        <h2 style="font-family:var(--display);font-size:clamp(36px,5vw,64px);line-height:1;color:var(--cream);margin:0;letter-spacing:-.02em;">LEDCON 2026.</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+
+        <div data-reveal>
+          <div class="eyebrow" style="color:var(--butter);margin-bottom:16px;">Leadership &amp; Development Conference</div>
+          <p style="font-size:17px;color:rgba(243,244,247,.88);line-height:1.65;margin:0 0 20px;">
+            LEDCON is the Texas-Oklahoma District's premier leadership training event, bringing together Key Club officers from across the district for a full weekend of workshops, skill-building, and collaboration. Club officers attend sessions on project management, public speaking, running effective meetings, and community impact.
+          </p>
+          <p style="font-size:15px;color:rgba(243,244,247,.65);line-height:1.6;margin:0 0 32px;">
+            LEDCON 2026 has concluded. Results are now available. See the contest winners and scholarship recipients from this year's conference.
+          </p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="https://tokeyclub.com/ledcon-2026-information" target="_blank" rel="noopener" class="btn red">LEDCON 2026 page ↗</a>
+            <a href="https://tokeyclub.com/ledcon-2026-information" target="_blank" rel="noopener" class="btn butter">Contest &amp; scholarship winners ↗</a>
+          </div>
+        </div>
+
+        <div data-reveal style="transition-delay:.1s;display:flex;flex-direction:column;gap:16px;">
+
+          <div class="card" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);">
+            <div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--butter);margin-bottom:10px;">What happens at LEDCON</div>
+            <ul style="margin:0;padding-left:18px;color:rgba(243,244,247,.8);font-size:15px;line-height:1.7;">
+              <li>Leadership workshops led by district officers</li>
+              <li>Service project competitions &amp; showcases</li>
+              <li>Scholarship awards ceremony</li>
+              <li>Networking with Key Clubbers across TX-OK</li>
+              <li>Spirit events &amp; division camaraderie</li>
+            </ul>
+          </div>
+
+          <div class="card" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);">
+            <div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--butter);margin-bottom:10px;">Who should attend</div>
+            <p style="font-size:15px;color:rgba(243,244,247,.8);margin:0;line-height:1.6;">Club officers, committee chairs, and any member interested in stepping into a leadership role. Attendance is highly encouraged before running for a district or division position.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── footer ── -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <h4>Bridgeland Key Club</h4>
+          <p style="margin:0;font-size:14px;line-height:1.55;opacity:.85;">
+            Bridgeland High School · Division 3W · Region 12<br/>
+            Chartered 2017 · Texas-Oklahoma District<br/>
+            Bridgeland HS · The Commons<br/>
+            10707 Mason Rd, Cypress, TX 77433
+          </p>
+          <div style="display:flex;gap:12px;margin-top:16px;align-items:center;">
+            <img src="assets/bridgeland-keyclub-logo.jpg"    alt="Bridgeland Key Club" style="width:44px;height:44px;border-radius:50%;" />
+            <img src="assets/keyclub-international-seal.jpg" alt="Key Club International" style="width:44px;height:44px;border-radius:50%;" />
+            <img src="assets/kiwanis-logo.webp"              alt="Kiwanis" style="width:44px;height:44px;border-radius:50%;" />
+            <img src="assets/txok-keyclub-logo.webp"         alt="TX-OK District" style="width:44px;height:44px;border-radius:50%;" />
+          </div>
+        </div>
+        <div>
+          <h4>The Club</h4>
+          <ul>
+            <li><a href="about.html">About Key Club</a></li>
+            <li><a href="officers.html">Officers</a></li>
+            <li><a href="district.html">District &amp; Division</a></li>
+            <li><a href="events.html">Events Calendar</a></li>
+            <li><a href="hours.html">Hours Tracker</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>The Family</h4>
+          <ul>
+            <li><a href="https://keyclub.org"   target="_blank" rel="noopener">Key Club International ↗</a></li>
+            <li><a href="https://tokeyclub.com" target="_blank" rel="noopener">TX-OK District ↗</a></li>
+            <li><a href="https://kiwanis.org"   target="_blank" rel="noopener">Kiwanis International ↗</a></li>
+            <li><a href="gallery.html">Photo Gallery</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Stay in touch</h4>
+          <ul>
+            <li><a href="mailto:bridgelandkeyclub@gmail.com">bridgelandkeyclub@gmail.com</a></li>
+            <li><a href="https://instagram.com/bridgelandkc" target="_blank" rel="noopener">@bridgelandkc ↗</a></li>
+            <li>Remind: @2026bkc / @2027bkc / @2028bkc / @2029bkc → 81010</li>
+            <li><a href="contact.html">Contact &amp; FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="yr"></span> Bridgeland Key Club · Division 3W · Texas-Oklahoma District</span>
+        <span class="footer-credit">site built &amp; maintained by Srikar Karri 🔑</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    var menuBtn  = document.getElementById('menu-btn');
+    var navLinks = document.getElementById('nav-links');
+    menuBtn.addEventListener('click', function () {
+      var open = navLinks.classList.toggle('nav-open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('[data-reveal]').forEach(function (el) { obs.observe(el); });
+
+    var mascot = document.getElementById('mascot');
+    var mx = 0, my = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
+    (function tick() {
+      cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+      var angle = Math.atan2(my - cy, mx - cx) * 180 / Math.PI;
+      mascot.style.transform = 'translate(' + (cx - 16) + 'px,' + (cy - 16) + 'px) rotate(' + angle + 'deg)';
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>

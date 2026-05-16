@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Events Calendar | Bridgeland Key Club</title>
+  <link rel="icon" href="assets/bridgeland-keyclub-logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,30..100&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared/styles.css" />
+  <style>
+    .cal-toolbar {
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; flex-wrap:wrap; margin-bottom:20px;
+    }
+    .cal-modes {
+      display:flex; gap:4px;
+      background:var(--navy-900); border-radius:12px; padding:5px;
+    }
+    .cal-mode-btn {
+      padding:8px 20px; border-radius:8px; border:none;
+      font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+      cursor:pointer; background:transparent; color:rgba(255,255,255,.55);
+      transition:background .18s, color .18s;
+    }
+    .cal-mode-btn.active { background:var(--butter); color:var(--navy-900); font-weight:600; }
+    .cal-mode-btn:hover:not(.active) { color:rgba(255,255,255,.9); }
+    .cal-actions { display:flex; gap:10px; flex-wrap:wrap; }
+    .cal-wrapper {
+      border-radius:20px; overflow:hidden;
+      border:1.5px solid var(--navy-900);
+      box-shadow:8px 8px 0 var(--navy-900);
+      background:white;
+    }
+    .projects-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+    @media(max-width:900px) { .projects-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:580px) { .projects-grid { grid-template-columns:1fr; } }
+    @media(max-width:680px) {
+      .cal-toolbar { flex-direction:column; align-items:flex-start; }
+      .cal-modes { width:100%; justify-content:space-between; }
+      .cal-mode-btn { flex:1; text-align:center; }
+    }
+  </style>
+</head>
+<body class="grain">
+
+  <div id="mascot" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-100px,-100px);">
+    <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="16" stroke="#e87722" stroke-width="6"/>
+      <circle cx="24" cy="24" r="7"  fill="#e87722"/>
+      <rect x="36" y="26" width="22" height="8" rx="4" fill="#e87722"/>
+      <rect x="48" y="34" width="8"  height="8" rx="3" fill="#e87722"/>
+      <rect x="38" y="34" width="8"  height="6" rx="3" fill="#e87722"/>
+    </svg>
+  </div>
+
+  <nav class="topnav" style="position:relative;">
+    <div class="topnav-inner">
+      <a href="home.html" class="topnav-brand">
+        <img src="assets/bridgeland-keyclub-logo.jpg" alt="Bridgeland Key Club logo" />
+        <span>Bridgeland Key Club</span>
+      </a>
+      <div class="topnav-links" id="nav-links">
+        <a href="home.html"      class="topnav-link">Home</a>
+        <a href="about.html"     class="topnav-link">About</a>
+        <a href="officers.html"  class="topnav-link">Officers</a>
+        <a href="district.html"  class="topnav-link">District</a>
+        <a href="events.html"    class="topnav-link active">Events</a>
+        <a href="hours.html"     class="topnav-link">Hours</a>
+        <a href="gallery.html"   class="topnav-link">Gallery</a>
+        <a href="news.html"      class="topnav-link">News</a>
+        <a href="slides.html"    class="topnav-link">Slides</a>
+        <a href="contact.html"   class="topnav-link">Contact &amp; FAQ</a>
+      </div>
+      <button class="menu-btn" id="menu-btn" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+    </div>
+  </nav>
+
+  <!-- ── Page header ── -->
+  <section style="padding:80px 0 60px;background:var(--cream);">
+    <div class="wrap">
+      <div class="eyebrow" data-reveal>Events &amp; sign-ups</div>
+      <h1 data-reveal style="font-family:var(--display);font-size:clamp(48px,6vw,88px);line-height:1;letter-spacing:-0.02em;margin:16px 0 0;color:var(--navy-900);">Mark your calendar.</h1>
+      <p data-reveal class="body-lg" style="margin:20px 0 0;max-width:620px;transition-delay:.1s;">Service events, socials, and district gatherings, all in one place. Sign-up links go live 48 hours before each event.</p>
+    </div>
+  </section>
+
+  <!-- ── Calendar ── -->
+  <section style="padding:20px 0 100px;background:var(--cream);">
+    <div class="wrap">
+
+      <!-- Toolbar: mode tabs + action buttons -->
+      <div class="cal-toolbar" data-reveal>
+        <div class="cal-modes" role="group" aria-label="Calendar view mode">
+          <button class="cal-mode-btn active" data-mode="MONTH"  onclick="setMode(this,'MONTH')">Month</button>
+          <button class="cal-mode-btn"        data-mode="WEEK"   onclick="setMode(this,'WEEK')">Week</button>
+          <button class="cal-mode-btn"        data-mode="DAY"    onclick="setMode(this,'DAY')">Day</button>
+          <button class="cal-mode-btn"        data-mode="AGENDA" onclick="setMode(this,'AGENDA')">Agenda</button>
+        </div>
+        <div class="cal-actions">
+          <a href="https://calendar.google.com/calendar/u/0?cid=YnJpZGdlbGFuZGtleWNsdWJAZ21haWwuY29t"
+             target="_blank" rel="noopener" class="btn ghost" style="font-size:13px;padding:10px 20px;">
+            + Add to my calendar
+          </a>
+          <a href="https://calendar.google.com/calendar/u/0?cid=YnJpZGdlbGFuZGtleWNsdWJAZ21haWwuY29t"
+             target="_blank" rel="noopener" class="btn red" style="font-size:13px;padding:10px 20px;">
+            Open in Google Calendar ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Calendar iframe -->
+      <div class="cal-wrapper" data-reveal style="transition-delay:.08s;">
+        <iframe id="cal-frame"
+          src="https://calendar.google.com/calendar/embed?src=bridgelandkeyclub%40gmail.com&ctz=America%2FChicago&showTitle=0&showNav=1&showDate=1&showPrint=0&showCalendars=0&mode=MONTH"
+          style="border:0;display:block;width:100%;height:680px;"
+          frameborder="0" scrolling="no"
+          title="Bridgeland Key Club Events Calendar">
+        </iframe>
+      </div>
+      <p style="margin:12px 0 0;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--navy-900);opacity:.5;text-align:right;">
+        Calendar requires Google Calendar to be set to public to display here.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ── Featured Projects ── -->
+  <section style="padding:100px 0;background:var(--cream-2);">
+    <div class="wrap">
+      <div data-reveal>
+        <div class="eyebrow">Where we show up</div>
+        <h2 style="font-family:var(--display);font-size:clamp(36px,5vw,64px);line-height:1;letter-spacing:-0.02em;margin:12px 0 0;color:var(--navy-900);">Featured projects.</h2>
+        <p class="body-lg" style="margin:16px 0 48px;max-width:600px;">Our most consistent service partnerships. The places we keep coming back to because the work matters.</p>
+      </div>
+      <div class="projects-grid">
+
+        <!-- Community of Faith -->
+        <div data-reveal style="transition-delay:0ms;">
+          <div class="card bordered" style="background:var(--mint);transform:rotate(-1.5deg);transition:transform .3s;" onmouseenter="this.style.transform='rotate(0deg) translateY(-6px)'" onmouseleave="this.style.transform='rotate(-1.5deg)'">
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red-600);margin-bottom:12px;">Cypress, TX</div>
+            <h3 style="font-family:var(--display);font-size:26px;line-height:1.1;margin:0 0 16px;color:var(--navy-900);">Community of Faith</h3>
+            <p style="font-size:14px;line-height:1.65;color:var(--navy-900);opacity:.85;margin:0 0 24px;">Club members serve through Community of Faith's monthly Serve Saturday projects — everything from food distributions to the Boys &amp; Girls Country Spring Carnival, bringing practical help and hope to families around Cypress and Hockley.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--navy-900);border-radius:4px;color:var(--navy-900);">Food distribution</span>
+              <span style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--navy-900);border-radius:4px;color:var(--navy-900);">Community events</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MESA-Outreach -->
+        <div data-reveal style="transition-delay:100ms;">
+          <div class="card bordered" style="background:var(--butter);transform:rotate(1deg);transition:transform .3s;" onmouseenter="this.style.transform='rotate(0deg) translateY(-6px)'" onmouseleave="this.style.transform='rotate(1deg)'">
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red-600);margin-bottom:12px;">Houston Food Bank Partner</div>
+            <h3 style="font-family:var(--display);font-size:26px;line-height:1.1;margin:0 0 16px;color:var(--navy-900);">MESA-Outreach, Inc.</h3>
+            <p style="font-size:14px;line-height:1.65;color:var(--navy-900);opacity:.85;margin:0 0 24px;">A Houston Food Bank partner, MESA's pantry distributes emergency groceries to food-insecure neighbors, while its "Books to Kids," school-supply, and scholarship programs invest in children's futures. We help stock shelves, hand out food, and read with kids during literacy events.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--navy-900);border-radius:4px;color:var(--navy-900);">Food pantry</span>
+              <span style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--navy-900);border-radius:4px;color:var(--navy-900);">Literacy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hope Chest -->
+        <div data-reveal style="transition-delay:200ms;">
+          <div class="card bordered" style="background:var(--peach);transform:rotate(-0.5deg);transition:transform .3s;" onmouseenter="this.style.transform='rotate(0deg) translateY(-6px)'" onmouseleave="this.style.transform='rotate(-0.5deg)'">
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red-600);margin-bottom:12px;">Cy-Hope</div>
+            <h3 style="font-family:var(--display);font-size:26px;line-height:1.1;margin:0 0 16px;color:var(--navy-900);">Hope Chest Resale Market</h3>
+            <p style="font-size:14px;line-height:1.65;color:var(--navy-900);opacity:.85;margin:0 0 24px;">The Hope Chest's 25,000 sq ft resale warehouse turns gently-used treasures into funding for Cy-Hope's youth programs. Our volunteers sort donations and staff sales so every purchase helps underserved Cy-Fair students thrive.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--navy-900);border-radius:4px;color:var(--navy-900);">Resale</span>
+              <span style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--navy-900);border-radius:4px;color:var(--navy-900);">Youth programs</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <h4>Bridgeland Key Club</h4>
+          <p style="margin:0;font-size:14px;line-height:1.55;opacity:.85;">
+            Bridgeland High School · Division 3W · Region 12<br/>
+            Chartered 2017 · Texas-Oklahoma District<br/>
+            Bridgeland HS · The Commons<br/>
+            10707 Mason Rd, Cypress, TX 77433
+          </p>
+          <div class="footer-logos">
+            <img src="assets/bridgeland-keyclub-logo.jpg"    alt="Bridgeland Key Club" />
+            <img src="assets/keyclub-international-seal.jpg" alt="Key Club International" />
+            <img src="assets/kiwanis-logo.webp"              alt="Kiwanis" />
+            <img src="assets/txok-keyclub-logo.webp"         alt="TX-OK District" />
+          </div>
+        </div>
+        <div>
+          <h4>The Club</h4>
+          <ul>
+            <li><a href="about.html">About Key Club</a></li>
+            <li><a href="officers.html">Officers</a></li>
+            <li><a href="district.html">District &amp; Division</a></li>
+            <li><a href="events.html">Events Calendar</a></li>
+            <li><a href="hours.html">Hours Tracker</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>The Family</h4>
+          <ul>
+            <li><a href="https://keyclub.org"   target="_blank" rel="noopener">Key Club International ↗</a></li>
+            <li><a href="https://tokeyclub.com" target="_blank" rel="noopener">TX-OK District ↗</a></li>
+            <li><a href="https://kiwanis.org"   target="_blank" rel="noopener">Kiwanis International ↗</a></li>
+            <li><a href="gallery.html">Photo Gallery</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Stay in touch</h4>
+          <ul>
+            <li><a href="mailto:bridgelandkeyclub@gmail.com">bridgelandkeyclub@gmail.com</a></li>
+            <li><a href="https://instagram.com/bridgelandkc" target="_blank" rel="noopener">@bridgelandkc ↗</a></li>
+            <li>Remind: @2026bkc / @2027bkc / @2028bkc / @2029bkc → 81010</li>
+            <li><a href="contact.html">Contact &amp; FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="yr"></span> Bridgeland Key Club · Division 3W · Texas-Oklahoma District</span>
+        <span class="footer-credit">site built &amp; maintained by Srikar Karri 🔑</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared/data.js"></script>
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    var menuBtn  = document.getElementById('menu-btn');
+    var navLinks = document.getElementById('nav-links');
+    menuBtn.addEventListener('click', function() {
+      var open = document.body.classList.toggle('nav-open');
+      menuBtn.setAttribute('aria-expanded', open);
+    });
+
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('[data-reveal]').forEach(function(el) { revealObs.observe(el); });
+
+    var mascot = document.getElementById('mascot');
+    var mx = 0, my = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
+    (function tick() {
+      cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+      var angle = Math.atan2(my - cy, mx - cx) * 180 / Math.PI;
+      mascot.style.transform = 'translate(' + (cx - 16) + 'px,' + (cy - 16) + 'px) rotate(' + angle + 'deg)';
+      requestAnimationFrame(tick);
+    })();
+
+    // Calendar mode switcher
+    var CAL_BASE = 'https://calendar.google.com/calendar/embed?src=bridgelandkeyclub%40gmail.com&ctz=America%2FChicago&showTitle=0&showNav=1&showDate=1&showPrint=0&showCalendars=0&mode=';
+    function setMode(btn, mode) {
+      document.querySelectorAll('.cal-mode-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('cal-frame').src = CAL_BASE + mode;
+    }
+  </script>
+</body>
+</html>

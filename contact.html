@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact &amp; FAQ | Bridgeland Key Club</title>
+  <link rel="icon" href="assets/bridgeland-keyclub-logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,30..100&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared/styles.css" />
+  <style>
+    .dir-card { text-decoration:none; color:var(--navy-900); display:block; height:100%; transition:transform .25s; }
+    .dir-card:hover { transform:rotate(0deg) translateY(-6px) !important; }
+    .faq-item { border-bottom:1.5px solid var(--navy-900); }
+    .faq-item:first-child { border-top:1.5px solid var(--navy-900); }
+    .faq-btn {
+      width:100%; text-align:left; padding:28px 0;
+      background:transparent; border:none; cursor:pointer;
+      display:flex; justify-content:space-between; align-items:baseline; gap:24px;
+    }
+    .faq-q { font-family:var(--display); font-size:clamp(20px,2.4vw,28px); line-height:1.15; color:var(--navy-900); letter-spacing:-0.01em; }
+    .faq-icon {
+      width:36px; height:36px; flex-shrink:0; border-radius:50%;
+      background:var(--butter); color:var(--navy-900);
+      display:grid; place-items:center;
+      font-family:var(--mono); font-size:18px;
+      transition:transform .2s, background .2s, color .2s;
+    }
+    .faq-body { max-height:0; overflow:hidden; transition:max-height .4s cubic-bezier(.2,.7,.2,1); }
+    .faq-body-inner { padding-bottom:28px; padding-right:60px; }
+    .faq-item.open .faq-icon { transform:rotate(45deg); background:var(--red-600); color:white; }
+    .faq-item.open .faq-body { max-height:400px; }
+    .social-block { display:flex; flex-direction:column; gap:12px; }
+    .contact-grid { display:grid; grid-template-columns:1.2fr 1fr; gap:60px; align-items:start; }
+    .dir-grid     { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+    .social-2col  { display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+    @media(max-width:900px) {
+      .dir-grid   { grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:720px) {
+      .contact-grid { grid-template-columns:1fr; gap:40px; }
+      .dir-grid     { grid-template-columns:repeat(2,1fr); }
+      .social-2col  { grid-template-columns:1fr; gap:40px; }
+    }
+    @media(max-width:480px) {
+      .dir-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body class="grain">
+
+  <div id="mascot" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-100px,-100px);">
+    <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="16" stroke="#e87722" stroke-width="6"/>
+      <circle cx="24" cy="24" r="7"  fill="#e87722"/>
+      <rect x="36" y="26" width="22" height="8" rx="4" fill="#e87722"/>
+      <rect x="48" y="34" width="8"  height="8" rx="3" fill="#e87722"/>
+      <rect x="38" y="34" width="8"  height="6" rx="3" fill="#e87722"/>
+    </svg>
+  </div>
+
+  <nav class="topnav" style="position:relative;">
+    <div class="topnav-inner">
+      <a href="home.html" class="topnav-brand">
+        <img src="assets/bridgeland-keyclub-logo.jpg" alt="Bridgeland Key Club logo" />
+        <span>Bridgeland Key Club</span>
+      </a>
+      <div class="topnav-links" id="nav-links">
+        <a href="home.html"      class="topnav-link">Home</a>
+        <a href="about.html"     class="topnav-link">About</a>
+        <a href="officers.html"  class="topnav-link">Officers</a>
+        <a href="district.html"  class="topnav-link">District</a>
+        <a href="events.html"    class="topnav-link">Events</a>
+        <a href="hours.html"     class="topnav-link">Hours</a>
+        <a href="gallery.html"   class="topnav-link">Gallery</a>
+        <a href="news.html"      class="topnav-link">News</a>
+        <a href="slides.html"    class="topnav-link">Slides</a>
+        <a href="contact.html"   class="topnav-link active">Contact &amp; FAQ</a>
+      </div>
+      <button class="menu-btn" id="menu-btn" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+    </div>
+  </nav>
+
+  <!-- ── Page header ── -->
+  <section style="padding:80px 0 60px;background:var(--cream);">
+    <div class="wrap">
+      <div class="eyebrow" data-reveal>Get in touch</div>
+      <h1 data-reveal style="font-family:var(--display);font-size:clamp(40px,5.5vw,80px);line-height:1;letter-spacing:-0.02em;margin:16px 0 0;color:var(--navy-900);max-width:780px;">Members, parents, partners: here's the right person for every question.</h1>
+      <p data-reveal class="body-lg" style="margin:20px 0 0;max-width:620px;transition-delay:.1s;">If you can't find what you need, the general inbox always works.</p>
+    </div>
+  </section>
+
+  <!-- ── Send a message + location card ── -->
+  <section style="padding:60px 0 0;background:var(--cream);">
+    <div class="wrap contact-grid">
+      <div data-reveal>
+        <div class="eyebrow">Send us a note</div>
+        <h2 style="font-family:var(--display);font-size:clamp(32px,4vw,56px);line-height:1.05;letter-spacing:-0.01em;margin:12px 0 0;color:var(--navy-900);">Have a question?</h2>
+        <p class="body-lg" style="margin-top:16px;">
+          Fill out our quick Google Form or reach us at&nbsp;<a href="mailto:bridgelandkeyclub@gmail.com" style="color:var(--red-600);font-weight:600;text-decoration-thickness:2px;">bridgelandkeyclub@gmail.com</a>.
+        </p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfjDsmXvz2HoSHOMJS93-KEOYfefrm80KktaZwONijoH8yE6g/viewform" target="_blank" rel="noopener" class="btn red" style="margin-top:24px;">Fill out the form ↗</a>
+      </div>
+      <div data-reveal style="transition-delay:.12s;">
+        <div class="card bordered" style="background:var(--butter);transform:rotate(2deg);">
+          <div class="eyebrow">Find us in person</div>
+          <div style="font-family:var(--display);font-size:22px;line-height:1.15;margin-top:12px;color:var(--navy-900);">The Commons · Bridgeland HS</div>
+          <p class="body" style="margin-top:8px;opacity:.85;">10707 Mason Rd, Cypress, TX 77433</p>
+          <hr style="margin:20px 0;border:none;border-top:1.5px dashed var(--navy-900);opacity:.5;" />
+          <div class="eyebrow">Meeting time</div>
+          <div style="font-family:var(--display);font-size:22px;line-height:1.15;margin-top:12px;color:var(--navy-900);">1st &amp; 3rd Wednesdays · 2:30 PM</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact directory ── -->
+  <section style="padding:120px 0 80px;background:var(--cream);">
+    <div class="wrap">
+      <div data-reveal class="eyebrow" style="text-align:center;">Contact directory</div>
+      <h2 data-reveal style="font-family:var(--display);font-size:clamp(32px,4vw,56px);line-height:1.05;letter-spacing:-0.01em;margin:12px 0 0;color:var(--navy-900);text-align:center;transition-delay:.06s;">Who to email.</h2>
+      <div class="dir-grid" style="margin-top:48px;">
+        <div data-reveal style="transition-delay:0ms;">
+          <a href="mailto:bridgelandkeyclub@gmail.com" class="card bordered dir-card" style="background:var(--mint);transform:rotate(-1.5deg);">
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--red-600);">The club</div>
+            <div style="font-family:var(--display);font-size:22px;line-height:1.15;margin-top:12px;">General inbox</div>
+            <div style="margin-top:16px;font-size:13px;line-height:1.6;opacity:.85;word-break:break-word;">bridgelandkeyclub@gmail.com</div>
+          </a>
+        </div>
+        <div data-reveal style="transition-delay:80ms;">
+          <a href="mailto:ltg3w@tokeyclub.com" class="card bordered dir-card" style="background:var(--peach);transform:rotate(1deg);">
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--red-600);">Division 3W leadership</div>
+            <div style="font-family:var(--display);font-size:22px;line-height:1.15;margin-top:12px;">Lieutenant Governor</div>
+            <div style="margin-top:16px;font-size:13px;line-height:1.6;opacity:.85;">ltg3w@tokeyclub.com<br/>Amuktamalyada Panchanganmvenkata</div>
+          </a>
+        </div>
+        <div data-reveal style="transition-delay:160ms;">
+          <a href="mailto:cypresskiwanis@example.org" class="card bordered dir-card" style="background:var(--sky);transform:rotate(-1deg);">
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--red-600);">Sponsoring Kiwanis</div>
+            <div style="font-family:var(--display);font-size:22px;line-height:1.15;margin-top:12px;">Cypress Kiwanis Club</div>
+            <div style="margin-top:16px;font-size:13px;line-height:1.6;opacity:.85;">PO Box 12345 · Cypress, TX 77433<br/>cypresskiwanis@example.org</div>
+          </a>
+        </div>
+        <div data-reveal style="transition-delay:240ms;">
+          <a href="mailto:techpro@tokeyclub.com" class="card bordered dir-card" style="background:var(--butter);transform:rotate(1.5deg);">
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--red-600);">District tech</div>
+            <div style="font-family:var(--display);font-size:22px;line-height:1.15;margin-top:12px;">TX-OK Tech Producer</div>
+            <div style="margin-top:16px;font-size:13px;line-height:1.6;opacity:.85;">techpro@tokeyclub.com<br/>For website grading</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Social channels ── -->
+  <section style="padding:80px 0;background:var(--navy-900);color:var(--cream);">
+    <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;">
+      <div data-reveal class="social-block">
+        <div class="eyebrow" style="color:var(--butter);">Instagram</div>
+        <h3 style="font-family:var(--display);font-size:34px;line-height:1;color:var(--cream);margin:12px 0;">@bridgelandkc</h3>
+        <p style="font-size:14px;color:rgba(243,244,247,.75);line-height:1.55;margin:0;">Daily-ish recaps, event reminders, officer takeovers.</p>
+        <a href="https://instagram.com/bridgelandkc" target="_blank" rel="noopener" style="color:var(--butter);font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;margin-top:16px;display:inline-block;">Open Instagram ↗</a>
+      </div>
+      <div data-reveal class="social-block" style="transition-delay:.1s;">
+        <div class="eyebrow" style="color:var(--butter);">Remind</div>
+        <p style="font-size:14px;color:rgba(243,244,247,.75);line-height:1.55;margin:12px 0 20px;">Text your code to <strong style="color:var(--cream);">81010</strong>. Use the one that matches your graduation year.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:12px 14px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--butter);margin-bottom:4px;">Class of 2026</div>
+            <div style="font-family:var(--display);font-size:22px;color:var(--cream);">@2026bkc</div>
+          </div>
+          <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:12px 14px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--butter);margin-bottom:4px;">Class of 2027</div>
+            <div style="font-family:var(--display);font-size:22px;color:var(--cream);">@2027bkc</div>
+          </div>
+          <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:12px 14px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--butter);margin-bottom:4px;">Class of 2028</div>
+            <div style="font-family:var(--display);font-size:22px;color:var(--cream);">@2028bkc</div>
+          </div>
+          <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:12px 14px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--butter);margin-bottom:4px;">Class of 2029</div>
+            <div style="font-family:var(--display);font-size:22px;color:var(--cream);">@2029bkc</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ accordion ── -->
+  <section style="padding:100px 0 120px;background:var(--cream);">
+    <div class="wrap" style="max-width:820px;">
+      <div data-reveal class="eyebrow" style="text-align:center;">Frequently asked</div>
+      <h2 data-reveal style="font-family:var(--display);font-size:clamp(36px,4.5vw,64px);line-height:1.05;letter-spacing:-0.01em;margin:12px 0 48px;color:var(--navy-900);text-align:center;transition-delay:.06s;">Common questions.</h2>
+
+      <div id="faq-container"></div>
+
+      <p data-reveal class="body" style="margin-top:48px;text-align:center;opacity:.7;">
+        Don't see your question? Email <a href="mailto:bridgelandkeyclub@gmail.com" style="color:var(--red-600);">bridgelandkeyclub@gmail.com</a>. We update this page when something gets asked twice.
+      </p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <h4>Bridgeland Key Club</h4>
+          <p style="margin:0;font-size:14px;line-height:1.55;opacity:.85;">
+            Bridgeland High School · Division 3W · Region 12<br/>
+            Chartered 2017 · Texas-Oklahoma District<br/>
+            Bridgeland HS · The Commons<br/>
+            10707 Mason Rd, Cypress, TX 77433
+          </p>
+          <div class="footer-logos">
+            <img src="assets/bridgeland-keyclub-logo.jpg"    alt="Bridgeland Key Club" />
+            <img src="assets/keyclub-international-seal.jpg" alt="Key Club International" />
+            <img src="assets/kiwanis-logo.webp"              alt="Kiwanis" />
+            <img src="assets/txok-keyclub-logo.webp"         alt="TX-OK District" />
+          </div>
+        </div>
+        <div>
+          <h4>The Club</h4>
+          <ul>
+            <li><a href="about.html">About Key Club</a></li>
+            <li><a href="officers.html">Officers</a></li>
+            <li><a href="district.html">District &amp; Division</a></li>
+            <li><a href="events.html">Events Calendar</a></li>
+            <li><a href="hours.html">Hours Tracker</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>The Family</h4>
+          <ul>
+            <li><a href="https://keyclub.org"   target="_blank" rel="noopener">Key Club International ↗</a></li>
+            <li><a href="https://tokeyclub.com" target="_blank" rel="noopener">TX-OK District ↗</a></li>
+            <li><a href="https://kiwanis.org"   target="_blank" rel="noopener">Kiwanis International ↗</a></li>
+            <li><a href="gallery.html">Photo Gallery</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Stay in touch</h4>
+          <ul>
+            <li><a href="mailto:bridgelandkeyclub@gmail.com">bridgelandkeyclub@gmail.com</a></li>
+            <li><a href="https://instagram.com/bridgelandkc" target="_blank" rel="noopener">@bridgelandkc ↗</a></li>
+            <li>Remind: @2026bkc / @2027bkc / @2028bkc / @2029bkc → 81010</li>
+            <li><a href="contact.html">Contact &amp; FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="yr"></span> Bridgeland Key Club · Division 3W · Texas-Oklahoma District</span>
+        <span class="footer-credit">site built &amp; maintained by Srikar Karri 🔑</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared/data.js"></script>
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    var menuBtn  = document.getElementById('menu-btn');
+    var navLinks = document.getElementById('nav-links');
+    menuBtn.addEventListener('click', function() {
+      var open = document.body.classList.toggle('nav-open');
+      menuBtn.setAttribute('aria-expanded', open);
+    });
+
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('[data-reveal]').forEach(function(el) { revealObs.observe(el); });
+
+    var mascot = document.getElementById('mascot');
+    var mx = 0, my = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
+    (function tick() {
+      cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+      var angle = Math.atan2(my - cy, mx - cx) * 180 / Math.PI;
+      mascot.style.transform = 'translate(' + (cx - 16) + 'px,' + (cy - 16) + 'px) rotate(' + angle + 'deg)';
+      requestAnimationFrame(tick);
+    })();
+
+    // Build FAQ accordion from BKC data
+    var faqs = (window.BKC && window.BKC.faqs) ? window.BKC.faqs : [];
+    var container = document.getElementById('faq-container');
+    faqs.forEach(function(f, i) {
+      var item = document.createElement('div');
+      item.className = 'faq-item';
+      item.setAttribute('data-reveal', '');
+      item.style.transitionDelay = (i * 40) + 'ms';
+      item.innerHTML =
+        '<button class="faq-btn" aria-expanded="false">' +
+          '<span class="faq-q">' + f.q + '</span>' +
+          '<span class="faq-icon" aria-hidden="true">+</span>' +
+        '</button>' +
+        '<div class="faq-body" role="region">' +
+          '<div class="faq-body-inner body-lg">' + f.a + '</div>' +
+        '</div>';
+      item.querySelector('.faq-btn').addEventListener('click', function() {
+        var wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(el) {
+          el.classList.remove('open');
+          el.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+        });
+        if (!wasOpen) {
+          item.classList.add('open');
+          item.querySelector('.faq-btn').setAttribute('aria-expanded', 'true');
+        }
+      });
+      container.appendChild(item);
+      revealObs.observe(item);
+    });
+  </script>
+</body>
+</html>

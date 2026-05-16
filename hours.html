@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hours Portal | Bridgeland Key Club</title>
+  <link rel="icon" href="assets/bridgeland-keyclub-logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,30..100&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared/styles.css" />
+  <style>
+    /* ── tab bar ── */
+    .hours-tabs {
+      display: flex; gap: 4px;
+      background: var(--navy-900); border-radius: 14px; padding: 5px;
+      width: fit-content; margin-bottom: 40px;
+    }
+    .hours-tab {
+      padding: 10px 24px; border-radius: 10px; border: none;
+      font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+      cursor: pointer; background: transparent; color: rgba(255,255,255,.5);
+      transition: background .18s, color .18s; white-space: nowrap;
+    }
+    .hours-tab.active { background: var(--butter); color: var(--navy-900); font-weight: 600; }
+    .hours-tab:hover:not(.active) { color: rgba(255,255,255,.9); }
+
+    /* ── big counter ── */
+    .hours-big { font-family: var(--display); font-size: clamp(96px,18vw,200px); line-height: .9; color: var(--butter); }
+
+    /* ── Tab 1: Log ── */
+    .log-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .log-card {
+      background: var(--butter); border: 1.5px solid var(--navy-900); border-radius: 20px;
+      box-shadow: 6px 6px 0 var(--navy-900); padding: 40px;
+    }
+    .qr-box {
+      background: white; border: 1.5px solid var(--navy-900); border-radius: 16px;
+      padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 12px;
+      box-shadow: 4px 4px 0 var(--navy-900);
+    }
+
+
+    /* ── Tab 3: OSC button ── */
+    .osc-btn {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--navy-900); color: var(--cream); text-decoration: none;
+      padding: 20px 32px; border-radius: 18px;
+      font-family: var(--display); font-size: 22px; line-height: 1;
+      border: 2px solid var(--navy-900);
+      box-shadow: 6px 6px 0 var(--butter);
+      transition: transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .2s cubic-bezier(.2,.7,.2,1), background .15s;
+    }
+    .osc-btn:hover, .osc-btn-hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 10px 10px 0 var(--butter);
+      background: #142f57;
+    }
+
+    /* ── Responsive ── */
+    .req-mini-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .v-divider { width:1px; background:rgba(14,42,78,.2); }
+    @media(max-width: 860px) {
+      .osc-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+      .v-divider { display: none; }
+    }
+    @media(max-width: 720px) {
+      .log-grid { grid-template-columns: 1fr; }
+      .hours-tabs { width: 100%; flex-direction: column; border-radius: 16px; }
+      .hours-tab  { width: 100%; text-align: center; }
+      .osc-btn { font-size: 18px; padding: 16px 24px; width: 100%; justify-content: center; box-sizing: border-box; }
+    }
+    @media(max-width: 480px) {
+      .req-mini-grid { grid-template-columns: 1fr 1fr; }
+      .log-card { padding: 24px; }
+    }
+  </style>
+</head>
+<body class="grain">
+
+  <div id="mascot" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-100px,-100px);">
+    <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="16" stroke="#e87722" stroke-width="6"/>
+      <circle cx="24" cy="24" r="7"  fill="#e87722"/>
+      <rect x="36" y="26" width="22" height="8" rx="4" fill="#e87722"/>
+      <rect x="48" y="34" width="8"  height="8" rx="3" fill="#e87722"/>
+      <rect x="38" y="34" width="8"  height="6" rx="3" fill="#e87722"/>
+    </svg>
+  </div>
+
+  <nav class="topnav" style="position:relative;">
+    <div class="topnav-inner">
+      <a href="home.html" class="topnav-brand">
+        <img src="assets/bridgeland-keyclub-logo.jpg" alt="Bridgeland Key Club logo" />
+        <span>Bridgeland Key Club</span>
+      </a>
+      <div class="topnav-links" id="nav-links">
+        <a href="home.html"      class="topnav-link">Home</a>
+        <a href="about.html"     class="topnav-link">About</a>
+        <a href="officers.html"  class="topnav-link">Officers</a>
+        <a href="district.html"  class="topnav-link">District</a>
+        <a href="events.html"    class="topnav-link">Events</a>
+        <a href="hours.html"     class="topnav-link active">Hours</a>
+        <a href="gallery.html"   class="topnav-link">Gallery</a>
+        <a href="news.html"      class="topnav-link">News</a>
+        <a href="slides.html"    class="topnav-link">Slides</a>
+        <a href="contact.html"   class="topnav-link">Contact &amp; FAQ</a>
+      </div>
+      <button class="menu-btn" id="menu-btn" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+    </div>
+  </nav>
+
+  <!-- ── Page header ── -->
+  <section style="padding:80px 0 60px;background:var(--cream);">
+    <div class="wrap">
+      <div class="eyebrow" data-reveal>Service hours · 2025–26</div>
+      <h1 data-reveal style="font-family:var(--display);font-size:clamp(48px,6vw,88px);line-height:1;letter-spacing:-0.02em;margin:16px 0 0;color:var(--navy-900);">The hours portal.</h1>
+      <p data-reveal class="body-lg" style="margin:20px 0 0;max-width:640px;transition-delay:.1s;">Log your hours after every event, track where you stand, and check your OSC sheet, all in one place.</p>
+    </div>
+  </section>
+
+  <!-- ── Big animated counter ── -->
+  <section style="padding:60px 0;background:var(--navy-900);color:var(--cream);text-align:center;">
+    <div class="wrap">
+      <div data-reveal class="eyebrow" style="color:var(--butter);">Club total · academic year 2025–26</div>
+      <div data-reveal class="hours-big" id="big-counter" style="transition-delay:.08s;">0</div>
+      <div data-reveal style="font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:rgba(243,244,247,.65);margin-top:12px;transition-delay:.14s;">verified service hours · 249 active members</div>
+    </div>
+  </section>
+
+  <!-- ── 3-tab section ── -->
+  <section style="padding:80px 0 120px;background:var(--cream);">
+    <div class="wrap">
+
+      <div class="hours-tabs" role="tablist">
+        <button class="hours-tab active" role="tab" onclick="showTab('log')">📋 Log your Hours</button>
+        <button class="hours-tab"        role="tab" onclick="showTab('track')">📊 Track Submitted Hours</button>
+        <button class="hours-tab"        role="tab" onclick="showTab('osc')">🗂 Check OSC Sheet</button>
+      </div>
+
+      <!-- ══ TAB 1: LOG ══ -->
+      <div id="tab-log">
+        <div class="log-grid">
+
+          <!-- Form card -->
+          <div class="log-card">
+            <div class="eyebrow" style="color:var(--navy-700);margin-bottom:12px;">Step 1</div>
+            <h2 style="font-family:var(--display);font-size:clamp(28px,3.5vw,44px);line-height:1.05;margin:0 0 16px;color:var(--navy-900);">Submit your hours.</h2>
+            <p style="font-size:15px;line-height:1.65;color:var(--navy-900);opacity:.8;margin:0 0 28px;">Fill out the form after every event you attended. Include the event name, date, and hours served. Submissions are reviewed and verified by an officer within 48 hours.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeKm7htkRhiMsBfaREBZsip6Yztq2Iy2l0R0KqHxfuw0ZLIQ/viewform?usp=header" target="_blank" rel="noopener" class="btn red" style="font-size:16px;padding:14px 32px;">Open Hours Form ↗</a>
+            <p style="margin:20px 0 0;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--navy-900);opacity:.55;">Or scan the QR code on the right with your phone.</p>
+          </div>
+
+          <!-- QR + info -->
+          <div style="display:flex;flex-direction:column;gap:20px;">
+            <div class="qr-box">
+              <img
+                src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=0e2a4e&bgcolor=ffffff&data=https://docs.google.com/forms/d/e/1FAIpQLSeeKm7htkRhiMsBfaREBZsip6Yztq2Iy2l0R0KqHxfuw0ZLIQ/viewform?usp=header"
+                alt="QR code to hours log form"
+                width="200" height="200"
+                style="border-radius:8px;"
+              />
+              <p style="margin:0;font-family:var(--hand);font-size:18px;color:var(--navy-900);text-align:center;">scan to log hours 🔑</p>
+            </div>
+            <div style="background:var(--cream-2);border:1px solid rgba(14,42,78,.15);border-radius:16px;padding:24px;">
+              <div style="font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--red-600);margin-bottom:12px;">Requirements reminder</div>
+              <div class="req-mini-grid">
+                <div style="text-align:center;padding:12px;background:var(--butter);border-radius:10px;border:1px solid var(--navy-900);">
+                  <div style="font-family:var(--display);font-size:40px;line-height:1;color:var(--navy-900);">15</div>
+                  <div style="font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-900);opacity:.75;margin-top:4px;">hrs / semester</div>
+                </div>
+                <div style="text-align:center;padding:12px;background:var(--mint);border-radius:10px;border:1px solid var(--navy-900);">
+                  <div style="font-family:var(--display);font-size:40px;line-height:1;color:var(--navy-900);">30</div>
+                  <div style="font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-900);opacity:.75;margin-top:4px;">hrs / year</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ TAB 2: TRACK ══ -->
+      <div id="tab-track" style="display:none;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="osc-grid">
+
+          <!-- Left: heading + CTA -->
+          <div>
+            <div class="eyebrow" style="margin-bottom:12px;">Submitted Hours</div>
+            <h2 style="font-family:var(--display);font-size:clamp(36px,4.5vw,64px);line-height:1.02;margin:0 0 20px;color:var(--navy-900);">Track your hours.</h2>
+            <p class="body-lg" style="margin:0 0 40px;color:var(--navy-900);opacity:.75;">See every submission logged this year, sorted by total hours. Use Ctrl+F / Cmd+F to find your name once the sheet opens.</p>
+
+            <a href="https://docs.google.com/spreadsheets/d/1_4rde7b23fMIEWRgmxgVYzN7GF67qr50ZGRx0pzpAtg/edit?gid=799952238#gid=799952238"
+               target="_blank" rel="noopener"
+               class="osc-btn"
+               onmouseenter="this.classList.add('osc-btn-hover')"
+               onmouseleave="this.classList.remove('osc-btn-hover')">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+              </svg>
+              Open Hours Tracker ↗
+            </a>
+
+            <p style="margin:20px 0 0;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--navy-900);opacity:.45;">Opens in a new tab · view-only for members</p>
+          </div>
+
+          <!-- Right: info cards -->
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="background:var(--peach);border:1.5px solid var(--navy-900);border-radius:18px;padding:28px;box-shadow:4px 4px 0 var(--navy-900);">
+              <div style="font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--navy-700);margin-bottom:10px;">What's in this sheet?</div>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:var(--navy-900);">Every hour submission for the academic year, sorted by member. Hours shown here are <strong>pending officer verification</strong>. Allow up to 48 hours after submission.</p>
+            </div>
+            <div style="background:var(--sky);border:1.5px solid var(--navy-900);border-radius:18px;padding:24px;box-shadow:4px 4px 0 var(--navy-900);">
+              <div style="font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--navy-700);margin-bottom:8px;">Requirements at a glance</div>
+              <div style="display:flex;gap:20px;">
+                <div style="text-align:center;">
+                  <div style="font-family:var(--display);font-size:44px;line-height:1;color:var(--navy-900);">15</div>
+                  <div style="font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;opacity:.65;">hrs/semester</div>
+                </div>
+                <div class="v-divider"></div>
+                <div style="text-align:center;">
+                  <div style="font-family:var(--display);font-size:44px;line-height:1;color:var(--navy-900);">30</div>
+                  <div style="font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;opacity:.65;">hrs/year</div>
+                </div>
+                <div class="v-divider"></div>
+                <div style="text-align:center;">
+                  <div style="font-family:var(--display);font-size:44px;line-height:1;color:var(--navy-900);">2</div>
+                  <div style="font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;opacity:.65;">socials/sem</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ TAB 3: OSC ══ -->
+      <div id="tab-osc" style="display:none;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="osc-grid">
+
+          <!-- Left: heading + CTA -->
+          <div>
+            <div class="eyebrow" style="margin-bottom:12px;">Official Standing &amp; Compliance</div>
+            <h2 style="font-family:var(--display);font-size:clamp(36px,4.5vw,64px);line-height:1.02;margin:0 0 20px;color:var(--navy-900);">Your OSC Sheet.</h2>
+            <p class="body-lg" style="margin:0 0 40px;color:var(--navy-900);opacity:.75;">The master record officers use to track your standing. Search your name with Ctrl+F / Cmd+F once the sheet opens.</p>
+
+            <a href="https://docs.google.com/spreadsheets/d/1T_aGg1kHD0s5Vc_4Opl8v0VwY2k0-Bt5leqQU4yYwPg/edit?gid=2145250430#gid=2145250430"
+               target="_blank" rel="noopener"
+               class="osc-btn"
+               onmouseenter="this.classList.add('osc-btn-hover')"
+               onmouseleave="this.classList.remove('osc-btn-hover')">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <line x1="14" y1="17.5" x2="21" y2="17.5"/><line x1="17.5" y1="14" x2="17.5" y2="21"/>
+              </svg>
+              Open OSC Sheet ↗
+            </a>
+
+            <p style="margin:20px 0 0;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--navy-900);opacity:.45;">Opens in a new tab · view-only for members</p>
+          </div>
+
+          <!-- Right: info cards -->
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="background:var(--butter);border:1.5px solid var(--navy-900);border-radius:18px;padding:28px;box-shadow:4px 4px 0 var(--navy-900);">
+              <div style="font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--navy-700);margin-bottom:10px;">What is the OSC Sheet?</div>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:var(--navy-900);">The authoritative record maintained by officers. It shows your verified hours, attendance, social credits, and overall standing. If Tab 2 differs from this sheet, <strong>this is the final word.</strong></p>
+            </div>
+            <div style="background:var(--mint);border:1.5px solid var(--navy-900);border-radius:18px;padding:24px;box-shadow:4px 4px 0 var(--navy-900);">
+              <div style="font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--navy-700);margin-bottom:8px;">Requirements at a glance</div>
+              <div style="display:flex;gap:20px;">
+                <div style="text-align:center;">
+                  <div style="font-family:var(--display);font-size:44px;line-height:1;color:var(--navy-900);">15</div>
+                  <div style="font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;opacity:.65;">hrs/semester</div>
+                </div>
+                <div class="v-divider"></div>
+                <div style="text-align:center;">
+                  <div style="font-family:var(--display);font-size:44px;line-height:1;color:var(--navy-900);">30</div>
+                  <div style="font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;opacity:.65;">hrs/year</div>
+                </div>
+                <div class="v-divider"></div>
+                <div style="text-align:center;">
+                  <div style="font-family:var(--display);font-size:44px;line-height:1;color:var(--navy-900);">2</div>
+                  <div style="font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;opacity:.65;">socials/sem</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <h4>Bridgeland Key Club</h4>
+          <p style="margin:0;font-size:14px;line-height:1.55;opacity:.85;">
+            Bridgeland High School · Division 3W · Region 12<br/>
+            Chartered 2017 · Texas-Oklahoma District<br/>
+            Bridgeland HS · The Commons<br/>
+            10707 Mason Rd, Cypress, TX 77433
+          </p>
+          <div class="footer-logos">
+            <img src="assets/bridgeland-keyclub-logo.jpg"    alt="Bridgeland Key Club" />
+            <img src="assets/keyclub-international-seal.jpg" alt="Key Club International" />
+            <img src="assets/kiwanis-logo.webp"              alt="Kiwanis" />
+            <img src="assets/txok-keyclub-logo.webp"         alt="TX-OK District" />
+          </div>
+        </div>
+        <div>
+          <h4>The Club</h4>
+          <ul>
+            <li><a href="about.html">About Key Club</a></li>
+            <li><a href="officers.html">Officers</a></li>
+            <li><a href="district.html">District &amp; Division</a></li>
+            <li><a href="events.html">Events Calendar</a></li>
+            <li><a href="hours.html">Hours Tracker</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>The Family</h4>
+          <ul>
+            <li><a href="https://keyclub.org"   target="_blank" rel="noopener">Key Club International ↗</a></li>
+            <li><a href="https://tokeyclub.com" target="_blank" rel="noopener">TX-OK District ↗</a></li>
+            <li><a href="https://kiwanis.org"   target="_blank" rel="noopener">Kiwanis International ↗</a></li>
+            <li><a href="gallery.html">Photo Gallery</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Stay in touch</h4>
+          <ul>
+            <li><a href="mailto:bridgelandkeyclub@gmail.com">bridgelandkeyclub@gmail.com</a></li>
+            <li><a href="https://instagram.com/bridgelandkc" target="_blank" rel="noopener">@bridgelandkc ↗</a></li>
+            <li>Remind: @2026bkc / @2027bkc / @2028bkc / @2029bkc → 81010</li>
+            <li><a href="contact.html">Contact &amp; FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="yr"></span> Bridgeland Key Club · Division 3W · Texas-Oklahoma District</span>
+        <span class="footer-credit">site built &amp; maintained by Srikar Karri 🔑</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared/data.js"></script>
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    var menuBtn  = document.getElementById('menu-btn');
+    var navLinks = document.getElementById('nav-links');
+    menuBtn.addEventListener('click', function() {
+      var open = document.body.classList.toggle('nav-open');
+      menuBtn.setAttribute('aria-expanded', open);
+    });
+
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('[data-reveal]').forEach(function(el) { revealObs.observe(el); });
+
+    var mascot = document.getElementById('mascot');
+    var mx = 0, my = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
+    (function tick() {
+      cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+      var angle = Math.atan2(my - cy, mx - cx) * 180 / Math.PI;
+      mascot.style.transform = 'translate(' + (cx - 16) + 'px,' + (cy - 16) + 'px) rotate(' + angle + 'deg)';
+      requestAnimationFrame(tick);
+    })();
+
+    // Animated counter
+    var TARGET_COUNT = (window.BKC && window.BKC.stats) ? window.BKC.stats.hoursThisYear : 5581;
+    var counterEl = document.getElementById('big-counter');
+    var counterStarted = false;
+    var countObs = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting && !counterStarted) {
+        counterStarted = true;
+        var duration = 2200, startTime = null;
+        function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+        function step(ts) {
+          if (!startTime) startTime = ts;
+          var progress = Math.min((ts - startTime) / duration, 1);
+          counterEl.textContent = Math.round(easeOut(progress) * TARGET_COUNT).toLocaleString();
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+    }, { threshold: 0.4 });
+    countObs.observe(counterEl);
+
+    // ── Tab switching ──
+    var TABS = ['log', 'track', 'osc'];
+    function showTab(name) {
+      TABS.forEach(function(t) {
+        document.getElementById('tab-' + t).style.display = t === name ? 'block' : 'none';
+      });
+      document.querySelectorAll('.hours-tab').forEach(function(btn, i) {
+        btn.classList.toggle('active', TABS[i] === name);
+      });
+    }
+  </script>
+</body>
+</html>

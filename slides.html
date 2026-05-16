@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meeting Slides | Bridgeland Key Club</title>
+  <link rel="icon" href="assets/bridgeland-keyclub-logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,30..100&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared/styles.css" />
+  <style>
+    .slide-card {
+      background:white; border:1.5px solid var(--navy-900); border-radius:10px;
+      overflow:hidden; box-shadow:4px 4px 0 var(--navy-900);
+      transition:transform .2s, box-shadow .2s; display:block; text-decoration:none; color:var(--navy-900);
+    }
+    .slide-card:hover { transform:translate(-4px,-4px); box-shadow:8px 8px 0 var(--navy-900); }
+    .slide-thumb {
+      aspect-ratio:16/9; background:linear-gradient(135deg,var(--navy-800),var(--navy-900));
+      color:var(--butter); display:grid; place-items:center;
+      padding:16px; text-align:center;
+      font-family:var(--display); font-size:16px; line-height:1.2;
+    }
+    .slide-meta { padding:14px; }
+    .slide-date { font-family:var(--mono); font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--red-600); }
+    .slide-title { font-family:var(--serif); font-size:15px; margin:8px 0 0; line-height:1.25; }
+    .slide-info  { font-family:var(--mono); font-size:10px; color:var(--navy-700); opacity:.7; margin-top:6px; }
+    #slides-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+    @media(max-width:900px) { #slides-grid { grid-template-columns:repeat(3,1fr); } }
+    @media(max-width:640px) { #slides-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:400px) { #slides-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body class="grain">
+
+  <div id="mascot" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-100px,-100px);">
+    <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="16" stroke="#e87722" stroke-width="6"/>
+      <circle cx="24" cy="24" r="7"  fill="#e87722"/>
+      <rect x="36" y="26" width="22" height="8" rx="4" fill="#e87722"/>
+      <rect x="48" y="34" width="8"  height="8" rx="3" fill="#e87722"/>
+      <rect x="38" y="34" width="8"  height="6" rx="3" fill="#e87722"/>
+    </svg>
+  </div>
+
+  <nav class="topnav" style="position:relative;">
+    <div class="topnav-inner">
+      <a href="home.html" class="topnav-brand">
+        <img src="assets/bridgeland-keyclub-logo.jpg" alt="Bridgeland Key Club logo" />
+        <span>Bridgeland Key Club</span>
+      </a>
+      <div class="topnav-links" id="nav-links">
+        <a href="home.html"      class="topnav-link">Home</a>
+        <a href="about.html"     class="topnav-link">About</a>
+        <a href="officers.html"  class="topnav-link">Officers</a>
+        <a href="district.html"  class="topnav-link">District</a>
+        <a href="events.html"    class="topnav-link">Events</a>
+        <a href="hours.html"     class="topnav-link">Hours</a>
+        <a href="gallery.html"   class="topnav-link">Gallery</a>
+        <a href="news.html"      class="topnav-link">News</a>
+        <a href="slides.html"    class="topnav-link active">Slides</a>
+        <a href="contact.html"   class="topnav-link">Contact &amp; FAQ</a>
+      </div>
+      <button class="menu-btn" id="menu-btn" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+    </div>
+  </nav>
+
+  <!-- ── Page header ── -->
+  <section style="padding:80px 0 60px;background:var(--cream);">
+    <div class="wrap">
+      <div class="eyebrow" data-reveal>Meeting slides · archive</div>
+      <h1 data-reveal style="font-family:var(--display);font-size:clamp(48px,6vw,88px);line-height:1;letter-spacing:-0.02em;margin:16px 0 0;color:var(--navy-900);">Missed a meeting? You're covered.</h1>
+      <p data-reveal class="body-lg" style="margin:20px 0 0;max-width:620px;transition-delay:.1s;">Slides go up within 24 hours of every Wednesday meeting. Click any deck to view in-browser, or download a PDF copy.</p>
+      <div data-reveal style="margin-top:28px;transition-delay:.15s;">
+        <a href="https://docs.google.com/presentation/u/0/" target="_blank" rel="noopener" class="btn ghost">
+          Open Google Slides ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Slides grid ── -->
+  <section style="padding:60px 0 120px;background:var(--cream);">
+    <div class="wrap">
+      <div id="slides-grid"></div>
+    </div>
+  </section>
+
+  <!-- ── CTA: missed something? ── -->
+  <section style="padding:80px 0;background:var(--navy-900);color:var(--cream);">
+    <div class="wrap" style="text-align:center;max-width:700px;">
+      <div data-reveal class="eyebrow" style="color:var(--butter);">Need a specific slide?</div>
+      <h2 data-reveal style="font-family:var(--display);font-size:clamp(32px,4vw,52px);line-height:1.05;letter-spacing:-0.01em;margin:12px 0 16px;transition-delay:.06s;">Can't find what you need?</h2>
+      <p data-reveal class="body-lg" style="color:rgba(243,244,247,.75);margin:0 0 28px;transition-delay:.1s;">Email us or ask at the next meeting. We keep full backups of every presentation.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfjDsmXvz2HoSHOMJS93-KEOYfefrm80KktaZwONijoH8yE6g/viewform" target="_blank" rel="noopener" class="btn butter">Email for a copy →</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <h4>Bridgeland Key Club</h4>
+          <p style="margin:0;font-size:14px;line-height:1.55;opacity:.85;">
+            Bridgeland High School · Division 3W · Region 12<br/>
+            Chartered 2017 · Texas-Oklahoma District<br/>
+            Bridgeland HS · The Commons<br/>
+            10707 Mason Rd, Cypress, TX 77433
+          </p>
+          <div class="footer-logos">
+            <img src="assets/bridgeland-keyclub-logo.jpg"    alt="Bridgeland Key Club" />
+            <img src="assets/keyclub-international-seal.jpg" alt="Key Club International" />
+            <img src="assets/kiwanis-logo.webp"              alt="Kiwanis" />
+            <img src="assets/txok-keyclub-logo.webp"         alt="TX-OK District" />
+          </div>
+        </div>
+        <div>
+          <h4>The Club</h4>
+          <ul>
+            <li><a href="about.html">About Key Club</a></li>
+            <li><a href="officers.html">Officers</a></li>
+            <li><a href="district.html">District &amp; Division</a></li>
+            <li><a href="events.html">Events Calendar</a></li>
+            <li><a href="hours.html">Hours Tracker</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>The Family</h4>
+          <ul>
+            <li><a href="https://keyclub.org"   target="_blank" rel="noopener">Key Club International ↗</a></li>
+            <li><a href="https://tokeyclub.com" target="_blank" rel="noopener">TX-OK District ↗</a></li>
+            <li><a href="https://kiwanis.org"   target="_blank" rel="noopener">Kiwanis International ↗</a></li>
+            <li><a href="gallery.html">Photo Gallery</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Stay in touch</h4>
+          <ul>
+            <li><a href="mailto:bridgelandkeyclub@gmail.com">bridgelandkeyclub@gmail.com</a></li>
+            <li><a href="https://instagram.com/bridgelandkc" target="_blank" rel="noopener">@bridgelandkc ↗</a></li>
+            <li>Remind: @2026bkc / @2027bkc / @2028bkc / @2029bkc → 81010</li>
+            <li><a href="contact.html">Contact &amp; FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="yr"></span> Bridgeland Key Club · Division 3W · Texas-Oklahoma District</span>
+        <span class="footer-credit">site built &amp; maintained by Srikar Karri 🔑</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared/data.js"></script>
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    var menuBtn  = document.getElementById('menu-btn');
+    var navLinks = document.getElementById('nav-links');
+    menuBtn.addEventListener('click', function() {
+      var open = document.body.classList.toggle('nav-open');
+      menuBtn.setAttribute('aria-expanded', open);
+    });
+
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('[data-reveal]').forEach(function(el) { revealObs.observe(el); });
+
+    var mascot = document.getElementById('mascot');
+    var mx = 0, my = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
+    (function tick() {
+      cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+      var angle = Math.atan2(my - cy, mx - cx) * 180 / Math.PI;
+      mascot.style.transform = 'translate(' + (cx - 16) + 'px,' + (cy - 16) + 'px) rotate(' + angle + 'deg)';
+      requestAnimationFrame(tick);
+    })();
+
+    // WEBMASTER: update this array to add new slide decks.
+    // For each entry, replace the `url` with the Google Slides share link (File → Share → "Anyone with link can view").
+    var decks = [
+      { date:'2026-04-23', title:'Officer Elections recap',   slides:18, present:'Camila R.',   url:'https://docs.google.com/presentation/u/0/' },
+      { date:'2026-04-09', title:'Spring Banquet planning',   slides:22, present:'Aanya P.',    url:'https://docs.google.com/presentation/u/0/' },
+      { date:'2026-03-26', title:'DCON debrief',              slides:14, present:'Bryan T.',    url:'https://docs.google.com/presentation/u/0/' },
+      { date:'2026-03-12', title:'Park Cleanup #4',           slides:12, present:'Indira C.',   url:'https://docs.google.com/presentation/u/0/' },
+      { date:'2026-02-26', title:'Mid-semester check-in',     slides:16, present:'Camila R.',   url:'https://docs.google.com/presentation/u/0/' },
+      { date:'2026-02-12', title:"Valentine's drive",         slides:10, present:'Devon K.',    url:'https://docs.google.com/presentation/u/0/' },
+      { date:'2026-01-29', title:'Spring intake welcome',     slides:24, present:'Camila R.',   url:'https://docs.google.com/presentation/u/0/' },
+      { date:'2026-01-15', title:'Goal-setting workshop',     slides:18, present:'Faisal A.',   url:'https://docs.google.com/presentation/u/0/' }
+    ];
+
+    var grid = document.getElementById('slides-grid');
+    decks.forEach(function(d, i) {
+      var dateObj = new Date(d.date + 'T12:00:00');
+      var dateStr = dateObj.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+      var wrapper = document.createElement('div');
+      wrapper.setAttribute('data-reveal', '');
+      wrapper.style.transitionDelay = (i * 50) + 'ms';
+      wrapper.innerHTML =
+        '<a href="' + d.url + '" target="_blank" rel="noopener" class="slide-card">' +
+          '<div class="slide-thumb">' + d.title + '</div>' +
+          '<div class="slide-meta">' +
+            '<div class="slide-date">' + dateStr + '</div>' +
+            '<div class="slide-title">' + d.title + '</div>' +
+            '<div class="slide-info">' + d.slides + ' slides · pres. ' + d.present + '</div>' +
+          '</div>' +
+        '</a>';
+      grid.appendChild(wrapper);
+      revealObs.observe(wrapper);
+    });
+  </script>
+</body>
+</html>
