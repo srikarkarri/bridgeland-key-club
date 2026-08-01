@@ -15,10 +15,10 @@ window.BKC = {
     instagramUrl: "https://instagram.com/bridgelandkc",
     remind: "Text @{year}bkc to 81010",
     remindCodes: [
-      { year: 2026, code: "@2026bkc" },
       { year: 2027, code: "@2027bkc" },
       { year: 2028, code: "@2028bkc" },
-      { year: 2029, code: "@2029bkc" }
+      { year: 2029, code: "@2029bkc" },
+      { year: 2030, code: "@2030bkc" }
     ]
   },
   district: {
