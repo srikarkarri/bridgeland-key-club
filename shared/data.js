@@ -9,7 +9,7 @@ window.BKC = {
     chartered: 2017,
     location: "Bridgeland HS · The Commons",
     address: "10707 Mason Rd, Cypress, TX 77433",
-    meetingTime: "1st & 3rd Wednesdays · 2:30 PM · The Commons",
+    meetingTime: "1st & 3rd Wednesdays · 2:50 PM · The Commons",
     email: "bridgelandkeyclub@gmail.com",
     instagram: "@bridgelandkc",
     instagramUrl: "https://instagram.com/bridgelandkc",
@@ -78,9 +78,9 @@ window.BKC = {
     { date: "2026-07-12", time: "All Day", title: "TXOK District Conv.",    where: "Dallas, TX",          type: "District",hours: 0 }
   ],
   stats: {
-    members: 249,
-    hoursThisYear: 5581,
-    eventsThisSemester: 18,
+    members: 254,
+    hoursThisYear: 5695,
+    eventsThisSemester: 44,
     yearsActive: 9
   },
   requirements: {
@@ -96,7 +96,7 @@ window.BKC = {
     { date: "2026-03-15", title: "Spring food drive: 1,200 lbs collected", excerpt: "Thank you to every member, parent, and homeroom teacher who pitched in.", tag: "Service" }
   ],
   faqs: [
-    { q: "When do you meet?", a: "1st and 3rd Wednesdays of each month at 2:30 PM in The Commons. Meetings run about 35 minutes." },
+    { q: "When do you meet?", a: "1st and 3rd Wednesdays of each month at 2:50 PM in The Commons. Meetings run about 35 minutes." },
     { q: "How much are dues?", a: "$45 per year. This covers your Key Club International membership, district dues, and a club shirt." },
     { q: "Do I need to commit to a number of hours?", a: "Yes. 15 service hours per semester (30 per year) to stay in good standing for credit." },
     { q: "Can I run for officer?", a: "Absolutely. Elections happen each April. You'll need at least one full semester as a member in good standing." },

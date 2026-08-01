@@ -1,15 +1,20 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 # Bridgeland Key Club — Webmaster Guide
 
 Built by Srikar Karri, Class of 2029 · srikar.karri@gmail.com
 
 ## Tech stack
 
-Pure HTML/CSS/JS — no build tools, no React, no npm. Every page is a self-contained `.html` file. Open any file in a browser and it works immediately.
+Pure HTML/CSS/JS — no build tools, no React, no npm, no package.json. Every page is a self-contained `.html` file with inline `<style>`/`<script>` blocks plus the shared files below. There is no lint/test/build command — to preview, open a `.html` file directly in a browser, or serve the folder locally (e.g. `python3 -m http.server`) if a page needs `fetch`-style same-origin behavior.
 
 ## File structure
 
 ```
 /
+├── index.html         Redirects to home.html
 ├── home.html          Landing page
 ├── about.html         Mission, values, Key Club objects
 ├── officers.html      Board cards (Polaroid / Clean / Yearbook styles)
@@ -20,23 +25,31 @@ Pure HTML/CSS/JS — no build tools, no React, no npm. Every page is a self-cont
 ├── slides.html        Meeting slide deck archive
 ├── district.html      Division 3W + TX-OK District info
 ├── contact.html       Contact directory + FAQ accordion
-├── assets/            Logos, photos (KC1–KC13.jpg in assets/photos/)
+├── assets/            Logos, officer photos, KC1–KC13.jpg in assets/photos/
 └── shared/
     ├── styles.css     Design tokens + all shared CSS
     └── data.js        Single source of truth — window.BKC object
 ```
 
+**Legacy/unused, do not edit expecting effect:** `assets/css/site.css`, `assets/js/chrome.js`, `assets/js/data.js`, `assets/js/site.js`, `assets/js/tweaks.js`, `shared/components.jsx`, `shared/page-shell.jsx`. None of these are referenced by any `.html` page (confirmed via grep across all pages) — they're leftovers from an earlier prototype. All active styling lives in `shared/styles.css` plus per-page inline `<style>` blocks; all active data lives in `shared/data.js`.
+
 ## The most important file: shared/data.js
 
-All dynamic content lives here. Edit this file to update officers, events, stats, news, and FAQs without touching any HTML.
+All dynamic content lives here. Edit this file to update club/district info, officers, events, stats, requirements, news, and FAQs without touching any HTML.
 
 ```js
 window.BKC = {
-  officers: [ ... ],   // renders on officers.html + home.html
-  events:   [ ... ],   // renders on events.html list view
-  stats:    { ... },   // animated counters on home.html + hours.html
-  news:     [ ... ],   // renders on news.html + home.html recap
-  faqs:     [ ... ],   // renders on contact.html accordion
+  club:         { ... },  // name, meeting time, contact, Remind codes
+  district:     { ... },  // Lt. Governor, Region 12 advisor, district site
+  kiwanis:      { ... },  // sponsoring Kiwanis club contact
+  intl:         { ... },  // Key Club International site
+  webmaster:    { ... },  // credit footer
+  officers:     [ ... ],  // renders on officers.html + home.html
+  events:       [ ... ],  // renders on events.html list view
+  stats:        { ... },  // animated counters on home.html + hours.html
+  requirements: { ... },  // hours/socials thresholds, shown on hours.html
+  news:         [ ... ],  // renders on news.html + home.html recap
+  faqs:         [ ... ],  // renders on contact.html accordion
 }
 ```
 
@@ -45,9 +58,9 @@ window.BKC = {
 ### Add/update an officer
 Edit the `officers` array in `shared/data.js`:
 ```js
-{ role: "President", name: "First Last", year: 2026, email: "email@example.com", pronouns: "she/her" }
+{ role: "President", name: "First Last", year: 2026, email: "email@example.com", photo: "assets/officers/first-last.jpeg" }
 ```
-The cards on `officers.html` and the preview on `home.html` update automatically.
+The cards on `officers.html` and the preview on `home.html` update automatically. Add the headshot to `assets/officers/`.
 
 ### Add a news post
 Add an object to the `news` array in `shared/data.js`:
@@ -63,10 +76,13 @@ Edit the `decks` array in `slides.html` (bottom `<script>` block):
 Get the URL from Google Slides → File → Share → "Anyone with the link can view" → copy link.
 
 ### Update the hours log form
-In `hours.html`, replace both instances of `HOURS_FORM_URL` with the actual Google Form share link. The QR code updates automatically (it uses the same URL variable).
+`hours.html` already links to the live Google Form (Tab 1) and its QR code, both pointing at the same `docs.google.com/forms/d/e/...` URL — search for that URL to update it if the form changes.
+
+### Update the hours tracker / OSC sheet
+Tabs 2 and 3 of `hours.html` ("Track Submitted Hours" and "Check OSC Sheet") are plain links (`class="osc-btn"`) to view-only Google Sheets — search `docs.google.com/spreadsheets/d/` in `hours.html` to find and swap the two sheet URLs. There is no Apps Script / live-fetch integration currently wired up; both tabs just open the sheet in a new tab.
 
 ### Update the gallery
-- **Drive embed**: The iframe in `gallery.html` points to folder `1aHO_INA4...`. Replace the folder ID in the `embeddedfolderview` URL if the folder changes.
+- **Drive embed**: The iframe in `gallery.html` points to folder `1aHO_INA4...`. Replace the folder ID in the `embeddedfolderview` URL (and the two other links to the same folder, plus the `GALLERY_ROOT` JS variable) if the folder changes.
 - **Album cards**: Edit the `albums` array in `gallery.html` JS. Update each `url` to point to the specific subfolder for that event, and `thumb` to a local photo path.
 - **Polaroid photos**: Drop new photos into `assets/photos/` and update the `KC{n}.jpg` references in the sticker pile JS.
 
@@ -79,16 +95,15 @@ The events calendar (`events.html`) embeds `bridgelandkeyclub@gmail.com`'s Googl
 1. Add events to that Google Calendar account
 2. Make sure the calendar is set to **public** (Google Calendar Settings → your calendar → Access permissions → "Make available to public")
 
-## Critical placeholders to fill before competition
+## Remaining placeholders to fill
 
 | What | Where | How |
 |------|-------|-----|
-| Officer names (7 TBAs) | `shared/data.js` → `officers` array | Replace `"Placeholder"` with real names |
-| Faculty advisor names | `officers.html` lines ~176-181 | Replace "Ms. Placeholder" / "Mr. Placeholder" |
-| Lt. Governor name | `shared/data.js` → `district.ltGov` | Confirm with TX-OK district |
-| Kiwanis email | `shared/data.js` → `kiwanis.email` | Remove `example.org` domain |
-| Hours log form URL | `hours.html` (both `HOURS_FORM_URL` instances) | Paste real Google Form link |
-| Slide deck URLs | `slides.html` JS `decks` array | Replace `u/0/` with real share links |
+| Faculty advisor names | `officers.html` lines ~126-127 | Replace "Ms. Placeholder" / "Mr. Placeholder" |
+| Kiwanis email | `shared/data.js` → `kiwanis.email` | Currently `cypresskeyclub@example.org` — replace with the real address |
+| Slide deck URLs | `slides.html` JS `decks` array | All entries currently point at the generic `docs.google.com/presentation/u/0/` — replace with real per-deck share links |
+
+Officer names, the Lt. Governor name, and the hours-log form URL are already filled in with real data — no longer placeholders.
 
 ## Design system
 
@@ -116,55 +131,15 @@ Add `data-reveal` to any element to make it fade up on scroll. Delay with inline
 <div data-reveal style="transition-delay:.1s;">...</div>
 ```
 
-## Hours tracker — Apps Script setup (one-time)
-
-Tab 2 ("Track Submitted Hours") loads live data via a Google Apps Script web app.
-Third-party CORS proxies cannot reach Google's servers — this is the only reliable approach.
-
-### Steps (≈3 minutes)
-
-1. Open the Google Form responses spreadsheet (Google Forms → Responses tab → green Sheets icon)
-2. In the spreadsheet: **Extensions → Apps Script**
-3. Delete everything in `Code.gs` and paste this:
-
-```js
-function doGet() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
-  var data  = sheet.getDataRange().getValues();
-  var headers = data[0].map(function(h) { return String(h).trim(); });
-  var rows = [];
-  for (var i = 1; i < data.length; i++) {
-    if (!data[i][0]) continue;
-    var row = {};
-    headers.forEach(function(h, j) { row[h] = data[i][j]; });
-    rows.push(row);
-  }
-  return ContentService
-    .createTextOutput(JSON.stringify(rows))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-```
-
-4. Click **Deploy → New deployment**
-5. Set: Type = **Web app**, Execute as = **Me**, Who has access = **Anyone**
-6. Click **Deploy** → copy the Web App URL (looks like `https://script.google.com/macros/s/ABC.../exec`)
-7. In `hours.html`, replace `PASTE_APPS_SCRIPT_URL_HERE` with that URL
-
-### Updating the deployment
-
-When the spreadsheet changes structure (new columns), you don't need to change anything — the script reads headers dynamically. Just keep the deployment live.
-
-If the URL stops working, redeploy: Apps Script → Deploy → Manage deployments → edit → new version.
-
 ## External service links to maintain
 
 | Service | URL | Where used |
 |---------|-----|------------|
 | Google Calendar | `bridgelandkeyclub@gmail.com` calendar | events.html embed |
 | Google Drive gallery | Folder `1aHO_INA4...` | gallery.html embed |
-| Apps Script web app | `APPS_SCRIPT_URL` in `hours.html` | Track tab live data |
-| OSC Sheet | Sheets link in `hours.html` | OSC tab |
-| Hours log form | set in `hours.html` (already configured) | Log tab + QR |
+| Hours log form | `docs.google.com/forms/d/e/...` in `hours.html` | Log tab + QR (already configured) |
+| Hours tracker sheet | `docs.google.com/spreadsheets/d/1_4rde7.../` in `hours.html` | Track tab (view-only link) |
+| OSC sheet | `docs.google.com/spreadsheets/d/1T_aGg1.../` in `hours.html` | OSC tab (view-only link) |
 
 ## Deploying
 
