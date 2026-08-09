@@ -30,7 +30,6 @@
     .what-grid    { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
     #officer-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:32px; }
     .req-grid     { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-bottom:32px; }
-    .recap-grid   { display:grid; grid-template-columns:1fr 1.5fr; gap:60px; }
     .cta-inner    { display:grid; grid-template-columns:1.4fr 1fr; gap:60px; align-items:center; }
     .strikes-row  { display:grid; grid-template-columns:auto 1fr auto; gap:32px; align-items:center; }
     .footer-logos { display:flex; gap:12px; margin-top:16px; align-items:center; }
@@ -46,7 +45,6 @@
       .what-header { grid-template-columns:1fr !important; }
       #officer-grid { grid-template-columns:repeat(2,1fr); }
       .req-grid    { grid-template-columns:repeat(2,1fr); }
-      .recap-grid  { grid-template-columns:1fr; }
       .cta-inner   { grid-template-columns:1fr; }
       .cta-logos   { display:none !important; }
     }
@@ -390,18 +388,15 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════
-       Recent service / news
+       Newsletters
   ════════════════════════════════════════════════════ -->
   <section style="background:var(--navy-900);color:var(--cream);padding:120px 0;">
     <div class="wrap">
-      <div class="recap-grid">
-        <div data-reveal>
-          <div class="eyebrow" style="color:var(--butter);">The recap</div>
-          <h2 style="font-family:var(--display);font-size:clamp(40px,5vw,72px);line-height:1;color:var(--cream);margin:12px 0 24px;letter-spacing:-.02em;">What we've been up to.</h2>
-          <p class="body-lg" style="color:rgba(243,244,247,.85);">We post recaps within a week of every event. If you missed it in person, you can still feel like you were there.</p>
-          <a href="news.html" class="btn butter" style="margin-top:24px;display:inline-flex;">Read all updates →</a>
-        </div>
-        <div id="news-feed"><!-- populated by JS --></div>
+      <div data-reveal style="max-width:640px;">
+        <div class="eyebrow" style="color:var(--butter);">The newsletter</div>
+        <h2 style="font-family:var(--display);font-size:clamp(40px,5vw,72px);line-height:1;color:var(--cream);margin:12px 0 24px;letter-spacing:-.02em;">What we've been up to.</h2>
+        <p class="body-lg" style="color:rgba(243,244,247,.85);">Monthly newsletters with recaps, photos, and shoutouts — posted straight to our Google Drive archive.</p>
+        <a href="news.html" class="btn butter" style="margin-top:24px;display:inline-flex;">View newsletters →</a>
       </div>
     </div>
   </section>
@@ -657,30 +652,6 @@
         wrap.addEventListener('mouseenter', function () { wrap.style.transform = 'rotate(0deg) translateY(-10px)'; });
         wrap.addEventListener('mouseleave', function () { wrap.style.transform = 'rotate(' + tilt + 'deg)'; });
         ofcGrid.appendChild(wrap);
-      });
-    }
-
-    /* ---- news feed (from shared/data.js) ---- */
-    var feed = document.getElementById('news-feed');
-    if (window.BKC && feed) {
-      if (!window.BKC.news.length) {
-        feed.innerHTML = '<p style="opacity:.6;">No news yet. Check back after the next event!</p>';
-      }
-      window.BKC.news.forEach(function (n) {
-        var row  = document.createElement('a');
-        row.href = 'news.html';
-        row.setAttribute('data-reveal', '');
-        row.style.cssText = 'display:grid;grid-template-columns:120px 1fr auto;gap:24px;align-items:baseline;padding:24px 0;border-bottom:1px solid rgba(255,255,255,.15);text-decoration:none;color:var(--cream);';
-        var dateStr = new Date(n.date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
-        row.innerHTML =
-          '<div style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--butter);">' + dateStr + '</div>' +
-          '<div>' +
-            '<div style="font-family:var(--serif);font-size:22px;line-height:1.2;margin-bottom:6px;">' + n.title + '</div>' +
-            '<div style="font-size:14px;opacity:.7;line-height:1.5;">' + n.excerpt + '</div>' +
-          '</div>' +
-          '<div style="font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.85);white-space:nowrap;">' + n.tag + '</div>';
-        feed.appendChild(row);
-        revealObs.observe(row);
       });
     }
 
