@@ -54,10 +54,10 @@ window.BKC = {
     { role: "Vice President",   name: "Jayden Lin",            year: 2027, email: "jaydenlin178@gmail.com",          photo: "assets/officers/jayden-lin.jpeg" },
     { role: "Secretary",        name: "Rishab Sosale",         year: 2028, email: "rishab.sosale@gmail.com",         photo: "assets/officers/rishab-sosale.jpeg" },
     { role: "Treasurer",        name: "Natasha Darure",        year: 2027, email: "natasha.darure@gmail.com",        photo: "assets/officers/natasha-darure.png" },
-    { role: "Editor",           name: "Brynna Mire",           year: 2028, email: "brynna.mire@gmail.com",           photo: "assets/officers/brynna-mire.jpeg" },
+    { role: "Editor",           name: "Brynna Mire",           year: 2027, email: "brynna.mire@gmail.com",           photo: "assets/officers/brynna-mire.jpeg" },
     { role: "District Editor",  name: "Riya Dheeraj",          year: 2027, email: "bridgelandkeyclub@gmail.com",     photo: "assets/officers/riya-dheeraj.jpeg" },
     { role: "Webmaster",        name: "Srikar Karri",          year: 2029, email: "srikar.karri@gmail.com",          photo: "assets/officers/srikar-karri.png" },
-    { role: "Events Chair",     name: "Elyssa Do",             year: 2027, email: "edayrit123@gmail.com",            photo: "assets/officers/elyssa-do.png" },
+    { role: "Events Chair",     name: "Elyssa Do",             year: 2028, email: "edayrit123@gmail.com",            photo: "assets/officers/elyssa-do.png" },
     { role: "Events Chair",     name: "Samruddhi Muralidhara", year: 2029, email: "samruddhimuralidhara@gmail.com",  photo: "assets/officers/samruddhi-muralidhara.png" },
     { role: "Events Chair",     name: "Aiyanna Khauv",         year: 2028, email: "aiyannakhauv.25@gmail.com",       photo: "assets/officers/aiyanna-khauv.png" },
     { role: "Events Chair",     name: "Jonathan Chadee",       year: 2028, email: "jonjasonvchad@gmail.com",         photo: "assets/officers/jonathan-chadee.png" },
@@ -65,7 +65,7 @@ window.BKC = {
     { role: "Social Chair",     name: "Katelyn Le",            year: 2027, email: "katelynel09@gmail.com",           photo: "assets/officers/katelyn-le.jpeg" },
     { role: "Social Chair",     name: "Avani Deshpande",       year: 2029, email: "deshpandeavani@yahoo.com",        photo: "assets/officers/avani-deshpande.jpeg" },
     { role: "Builders Club",    name: "Yashvi Khurana",        year: 2029, email: "hifromyashvi@gmail.com",          photo: "assets/officers/yashvi-khurana.jpeg" },
-    { role: "Builders Club",    name: "Sanni Arimanda",        year: 2028, email: "sanni.arimanda08@gmail.com",      photo: "assets/officers/sanni-arimanda.jpeg" },
+    { role: "Builders Club",    name: "Sanni Arimanda",        year: 2027, email: "sanni.arimanda08@gmail.com",      photo: "assets/officers/sanni-arimanda.jpeg" },
     { role: "Builders Club",    name: "Samhita Vasireddy",     year: 2029, email: "sami.vasireddy@gmail.com",        photo: "assets/officers/sami-vasireddy.jpeg" }
   ],
   events: [

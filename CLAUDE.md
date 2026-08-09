@@ -86,6 +86,9 @@ Tabs 2 and 3 of `hours.html` ("Track Submitted Hours" and "Check OSC Sheet") are
 - **Album cards**: Edit the `albums` array in `gallery.html` JS. Update each `url` to point to the specific subfolder for that event, and `thumb` to a local photo path.
 - **Polaroid photos**: Drop new photos into `assets/photos/` and update the `KC{n}.jpg` references in the sticker pile JS.
 
+### Update the newsletter archive
+`news.html` embeds folder `1ukCvSQFaIY7hy93AZpObx0JQzoMMzZVO` (Google Drive) via `embeddedfolderview`, plus a "View all newsletters" button and an "Open in Google Drive" button linking to the same folder. Newsletters are posted directly into that Drive folder — no HTML edit needed for new newsletters, just upload the file there. If the folder ever changes, search `1ukCvSQFaIY7hy93AZpObx0JQzoMMzZVO` in `news.html` and replace all three occurrences. The folder must be set to public (Drive Settings → Access permissions → "Anyone with the link") or the embed shows a sign-in prompt.
+
 ### Add a district/division officer
 Edit `district.html` directly — search for `"Placeholder — confirm with district"` and replace with the real name and contact.
 
@@ -137,6 +140,7 @@ Add `data-reveal` to any element to make it fade up on scroll. Delay with inline
 |---------|-----|------------|
 | Google Calendar | `bridgelandkeyclub@gmail.com` calendar | events.html embed |
 | Google Drive gallery | Folder `1aHO_INA4...` | gallery.html embed |
+| Google Drive newsletters | Folder `1ukCvSQFaIY7hy93AZpObx0JQzoMMzZVO` | news.html embed + buttons |
 | Hours log form | `docs.google.com/forms/d/e/...` in `hours.html` | Log tab + QR (already configured) |
 | Hours tracker sheet | `docs.google.com/spreadsheets/d/1_4rde7.../` in `hours.html` | Track tab (view-only link) |
 | OSC sheet | `docs.google.com/spreadsheets/d/1T_aGg1.../` in `hours.html` | OSC tab (view-only link) |
