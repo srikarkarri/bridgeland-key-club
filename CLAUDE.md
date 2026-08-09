@@ -144,6 +144,16 @@ Add `data-reveal` to any element to make it fade up on scroll. Delay with inline
 | Hours log form | `docs.google.com/forms/d/e/...` in `hours.html` | Log tab + QR (already configured) |
 | Hours tracker sheet | `docs.google.com/spreadsheets/d/1_4rde7.../` in `hours.html` | Track tab (view-only link) |
 | OSC sheet | `docs.google.com/spreadsheets/d/1T_aGg1.../` in `hours.html` | OSC tab (view-only link) |
+| Site visit counter | `hitscounter.dev/api/hit?url=bridgeland-key-club.pages.dev/home` | `.footer-visits` badge, all 10 pages |
+
+### About the visit counter
+
+Every page's footer embeds a live badge image from the free, no-signup [hitscounter.dev](https://hitscounter.dev) service. Every page uses the **same** `url=` query value (`https://bridgeland-key-club.pages.dev/home`) so all pages increment one shared sitewide total, not a per-page count — the badge fetches fresh on every page load/refresh (no caching, so it updates live). No account or API key is involved.
+
+**Trade-offs to know:**
+- It's a third-party hobby service with no uptime guarantee. Its predecessor (`hits.seeyoufarm.com`) and the older `countapi.xyz` both shut down; if this one goes down too, the badge just breaks (shows a broken image icon) — it won't break the rest of the site.
+- If the site's real deployed URL ever changes from `https://bridgeland-key-club.pages.dev/home`, the counter will silently start a fresh count at the new URL unless you update it. Search `hitscounter.dev/api/hit?url=` across all 10 HTML files to update it everywhere at once.
+- The badge shows two numbers ("hits / unique visitors") — that's the service's fixed format, not something we control.
 
 ## Deploying
 

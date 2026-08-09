@@ -346,6 +346,8 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0;
   color: var(--butter);
 }
+.footer-visits { display: flex; align-items: center; }
+.footer-visits img { display: block; border-radius: 3px; }
 .footer-logos { display: flex; gap: 12px; margin-top: 16px; align-items: center; }
 .footer-logos img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
 
