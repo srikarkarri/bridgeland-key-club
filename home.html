@@ -663,6 +663,9 @@
     /* ---- news feed (from shared/data.js) ---- */
     var feed = document.getElementById('news-feed');
     if (window.BKC && feed) {
+      if (!window.BKC.news.length) {
+        feed.innerHTML = '<p style="opacity:.6;">No news yet. Check back after the next event!</p>';
+      }
       window.BKC.news.forEach(function (n) {
         var row  = document.createElement('a');
         row.href = 'news.html';

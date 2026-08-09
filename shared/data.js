@@ -89,12 +89,7 @@ window.BKC = {
     semesterSocials: 2,
     yearSocials: 4
   },
-  news: [
-    { date: "2026-04-22", title: "We swept Division 3W awards at DCON", excerpt: "Bridgeland brought home Distinguished Club, Distinguished Webmaster, and three single-service nods.", tag: "Awards" },
-    { date: "2026-04-08", title: "5,000 hours and counting (somehow)", excerpt: "We crossed five thousand verified service hours this academic year, a new chapter record.", tag: "Milestone" },
-    { date: "2026-03-30", title: "Mr. Reyes named Cypress Kiwanian of the Year", excerpt: "Our sponsor and biggest cheerleader got the recognition he deserves. We made him a card.", tag: "Community" },
-    { date: "2026-03-15", title: "Spring food drive: 1,200 lbs collected", excerpt: "Thank you to every member, parent, and homeroom teacher who pitched in.", tag: "Service" }
-  ],
+  news: [],
   faqs: [
     { q: "When do you meet?", a: "1st and 3rd Wednesdays of each month at 2:50 PM in The Commons. Meetings run about 35 minutes." },
     { q: "How much are dues?", a: "$45 per year. This covers your Key Club International membership, district dues, and a club shirt." },

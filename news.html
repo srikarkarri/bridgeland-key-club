@@ -67,9 +67,8 @@
     <div class="wrap">
       <div class="eyebrow" data-reveal>The recap</div>
       <h1 data-reveal style="font-family:var(--display);font-size:clamp(48px,6vw,88px);line-height:1;letter-spacing:-0.02em;margin:16px 0 0;color:var(--navy-900);">What we've been up to.</h1>
-      <p data-reveal class="body-lg" style="margin:20px 0 0;max-width:620px;transition-delay:.1s;">Recaps land within a week of every event. Subscribe to the listserv for the long-form versions and the inside jokes.</p>
+      <p data-reveal class="body-lg" style="margin:20px 0 0;max-width:620px;transition-delay:.1s;">Recaps land every month. View our newsletters here.</p>
       <div data-reveal style="margin-top:24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;transition-delay:.15s;">
-        <a href="mailto:bridgelandkeyclub@gmail.com?subject=Add%20me%20to%20the%20listserv" class="btn ghost" style="font-size:14px;">Get on the listserv →</a>
         <a href="https://instagram.com/bridgelandkc" target="_blank" rel="noopener" class="btn ghost" style="font-size:14px;">Follow @bridgelandkc ↗</a>
         <a href="https://drive.google.com/drive/folders/1ukCvSQFaIY7hy93AZpObx0JQzoMMzZVO?usp=sharing" target="_blank" rel="noopener" class="btn ghost" style="font-size:14px;">View all newsletters ↗</a>
       </div>
@@ -215,11 +214,7 @@
     // Merge BKC.news with extra static items
     var bkcNews = (window.BKC && window.BKC.news) ? window.BKC.news : [];
     // WEBMASTER: add additional news items here as objects with date, title, excerpt, tag, url (optional)
-    var extra = [
-      { date:'2026-02-28', title:'Officer applications open',              excerpt:'Forms due March 15. Eight roles plus committee chairs.',                         tag:'Internal' },
-      { date:'2026-02-14', title:"Valentine's cards for Cypress Senior Living", excerpt:"120 cards, 14 members, 1 unforgettable bingo round.",                     tag:'Service'  },
-      { date:'2026-01-22', title:'Welcome week recap: 41 new members',     excerpt:'Our biggest spring intake in five years. Welcome aboard.',                     tag:'Membership'}
-    ];
+    var extra = [];
     var all = bkcNews.concat(extra);
     all.sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
 
